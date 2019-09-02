@@ -1,0 +1,7 @@
+<h1></h1>
+<span>Ip:
+<input mask="IP"  value="selectedIp"/>
+<button (click)="searchByIp()">Search</button>
+</span>
+<p></p>
+<span *ngIf="geoInfo"> City : {{geoInfo.City}} </span>
