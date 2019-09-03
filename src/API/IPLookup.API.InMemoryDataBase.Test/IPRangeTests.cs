@@ -25,17 +25,18 @@ namespace IPLookup.API.Host.Tests
         private static IPRange GetIpRange(uint expectedIpfrom, uint expectedIpTo, uint expectedIndex)
         {
             var ipRangeByte = new byte[72];
-            BitConverter.GetBytes(60u).CopyTo(ipRangeByte, 52);
+            BitConverter.GetBytes(60u).CopyTo(ipRangeByte, 48);
             BitConverter.GetBytes(expectedIpfrom).CopyTo(ipRangeByte, 60);
             BitConverter.GetBytes(expectedIpTo).CopyTo(ipRangeByte, 64);
             BitConverter.GetBytes(expectedIndex).CopyTo(ipRangeByte, 68);
-            return new IPRange(ipRangeByte, 0);
+            return new IPRange(ipRangeByte, 0u);
         }
 
         [TestMethod]
         public void Constructor_WrongDbSize_Test()
         {
             var ipRangeByte = new byte[65];
+            BitConverter.GetBytes(60u).CopyTo(ipRangeByte, 48);
             Assert.ThrowsException<InvalidOperationException>(() => new IPRange(ipRangeByte, 0));
         }
         [TestMethod]

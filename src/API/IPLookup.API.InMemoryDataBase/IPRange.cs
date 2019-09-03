@@ -2,7 +2,7 @@
 
 namespace IPLookup.API.InMemoryDataBase
 {
-    public class IPRange : IByValueBinarySearch
+    public class IPRange : IByValueBinarySearchObject
     {
         private const int RANGE_ROW_SIZE = 12;
 
@@ -12,7 +12,7 @@ namespace IPLookup.API.InMemoryDataBase
 
         private byte[] dataBase;
 
-        public IPRange(byte[] dataBase, int index)
+        public IPRange(byte[] dataBase, uint index)
         {
             var offset = new GeoBaseHeader(dataBase).OffsetRanges;
             var startIndex = (int)(offset + (RANGE_ROW_SIZE) * index);

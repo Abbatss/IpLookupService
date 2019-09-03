@@ -12,7 +12,11 @@ namespace IPLookup.API.InMemoryDataBase
         private readonly string DataBasefilePath;
         private Lazy<GeoBaseHeader> header = new Lazy<GeoBaseHeader>(() => ReadHeader());
 
-        public GeoDataBaseClient(string dataBasefilePath)
+        public IRowObjectFactory Factory { get; }
+        public GeoDataBaseClient(string dataBasefilePath) : this(dataBasefilePath, new GeoDataBaseRowObjectFactory())
+        {
+        }
+        public GeoDataBaseClient(string dataBasefilePath, IRowObjectFactory factory)
         {
             if (string.IsNullOrWhiteSpace(dataBasefilePath))
             {
@@ -20,6 +24,7 @@ namespace IPLookup.API.InMemoryDataBase
             }
 
             DataBasefilePath = dataBasefilePath;
+            Factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         private static GeoBaseHeader ReadHeader()
@@ -44,23 +49,25 @@ namespace IPLookup.API.InMemoryDataBase
         {
             return header.Value;
         }
-        public Task<IPRange> GetIpRange(Byte[] ip)
+        public Task<T> Get<T>(byte[] ip)
+             where T : class, IByValueBinarySearchObject
         {
             if (ip.Length != 4)
             {
                 throw new ArgumentException("ip is not valid");
             }
-            return Task.FromResult(DataBase.ValueBinarySearch<IPRange>((uint)header.Value.Records, ip, (byte[] x, uint y) => new IPRange(x, (int)y)));
+            return Task.FromResult(DataBase.ValueBinarySearch<T>((uint)header.Value.Records, ip, Factory));
         }
-        public Task<List<IPRange>> GetIpRanges(int start, int count)
+        public Task<List<T>> GetItems<T>(int start, int count)
+             where T : class, IByValueBinarySearchObject
         {
-            var list = new List<IPRange>();
+            var list = new List<T>();
             var end = start + count;
             if (start >= 0 && end <= header.Value.Records)
             {
                 for (int i = start; i < end; i++)
                 {
-                    list.Add(new IPRange(DataBase, i));
+                    list.Add(Factory.CreateInstance<T>(DataBase, (uint)i));
                 }
             }
             return Task.FromResult(list);

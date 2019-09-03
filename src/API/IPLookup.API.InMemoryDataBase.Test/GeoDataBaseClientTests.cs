@@ -33,23 +33,23 @@ namespace IPLookup.API.Host.Tests
         [TestMethod]
         public async Task GetIpRanges_Test()
         {
-            var ipRanges = await _client.GetIpRanges(0, _header.Records);
+            var ipRanges = await _client.GetItems<IPRange>(0, _header.Records);
             Assert.AreEqual(_header.Records, ipRanges.Count);
-            var ipRanges2 = await _client.GetIpRanges(10, 5);
+            var ipRanges2 = await _client.GetItems<IPRange>(10, 5);
             CollectionAssert.AreEquivalent(ipRanges.Skip(10).Take(5).ToList(), ipRanges2);
         }
         [TestMethod]
         public async Task GetIpRanges_OutOfIndex_Test()
         {
-            Assert.AreEqual(0, (await _client.GetIpRanges(-1, _header.Records)).Count);
-            Assert.AreEqual(0, (await _client.GetIpRanges(0, _header.Records + 1)).Count);
+            Assert.AreEqual(0, (await _client.GetItems<IPRange>(-1, _header.Records)).Count);
+            Assert.AreEqual(0, (await _client.GetItems<IPRange>(0, _header.Records + 1)).Count);
         }
         [TestMethod]
         public async Task GetIpRange_Test()
         {
-            var expectedIpRange = (await _client.GetIpRanges(1, 1))[0];
+            var expectedIpRange = (await _client.GetItems<IPRange>(1, 1))[0];
             var ipToSearch = expectedIpRange.IpFrom + 1;
-            var actualIpRange = await _client.GetIpRange(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
 
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
@@ -61,22 +61,22 @@ namespace IPLookup.API.Host.Tests
         [TestMethod]
         public async Task GetIpRange_MaxIp_Test()
         {
-            var expectedIpRange = (await _client.GetIpRanges(_header.Records - 1, 1))[0];
+            var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo;
-            var actualIpRange = await _client.GetIpRange(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
             ipToSearch = expectedIpRange.IpFrom;
-            actualIpRange = await _client.GetIpRange(BitConverter.GetBytes(ipToSearch));
+            actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
         }
 
         [TestMethod]
         public async Task GetIpRange_NotFount_Test()
         {
-            var expectedIpRange = (await _client.GetIpRanges(_header.Records - 1, 1))[0];
+            var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo + 1;
-            var actualIpRange = await _client.GetIpRange(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
             Assert.IsNull(actualIpRange);
         }
     }
