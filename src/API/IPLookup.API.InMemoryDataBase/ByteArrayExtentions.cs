@@ -14,7 +14,7 @@ namespace IPLookup.API.InMemoryDataBase
         /// <param name="rowOffset">where to find value in a row</param>
         /// /// <param name="value">what to find</param>
         /// <returns></returns>
-        internal static T ValueBinarySearch<T>(this byte[] dataBase, uint rowCount, byte[] value, IRowObjectFactory objectFactory)
+        internal static T ValueBinarySearch<T>(this byte[] dataBase, uint rowCount, string value, IRowObjectFactory objectFactory)
             where T : class, IByValueBinarySearchObject
         {
             if (rowCount == 0)
@@ -24,7 +24,7 @@ namespace IPLookup.API.InMemoryDataBase
             return BinarySearchRange<T>(dataBase, rowCount, value, objectFactory);
         }
 
-        private static T BinarySearchRange<T>(byte[] dataBase, uint rowCount, byte[] value, IRowObjectFactory objectFactory)
+        private static T BinarySearchRange<T>(byte[] dataBase, uint rowCount, string value, IRowObjectFactory objectFactory)
             where T : class, IByValueBinarySearchObject
         {
             var minRow = 0u;

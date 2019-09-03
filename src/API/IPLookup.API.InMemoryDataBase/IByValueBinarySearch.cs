@@ -2,7 +2,7 @@
 {
     public interface IByValueBinarySearchObject
     {
-        bool ContainsValue(byte[] value);
-        bool Less(byte[] value);
+        bool ContainsValue(string value);
+        bool Less(string value);
     }
 }

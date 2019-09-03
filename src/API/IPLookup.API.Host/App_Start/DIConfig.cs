@@ -1,5 +1,6 @@
 ﻿using IPLookup.API.Host.Controllers;
 using IPLookup.API.Host.Utilities;
+using IPLookup.API.InMemoryDataBase;
 using IPLookup.API.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,7 +18,9 @@ namespace IPLookup.API.Host.App_Start
         {
             var services = new ServiceCollection();
             services.AddControllersAsServices(GetControllers());
-            services.AddSingleton<IGeoDataBaseQuery>(new GeoDataBaseQuery());
+            var client = new GeoDataBaseClient("./DataBase/geobase.dat");
+            client.Init();
+            services.AddSingleton<IGeoDataBaseQuery>(new GeoDataBaseQuery(client));
             var resolver = new CustomDependencyResolver(services.BuildServiceProvider());
             config.DependencyResolver = resolver;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace IPLookup.API.InMemoryDataBase
 {
@@ -30,15 +31,35 @@ namespace IPLookup.API.InMemoryDataBase
             LocationIndex = BitConverter.ToUInt32(dataBase, locationIndexStartIndex);
         }
 
-        public bool ContainsValue(byte[] value)
+        public bool ContainsValue(string value)
         {
-            var ip = BitConverter.ToUInt32(value, 0);
+            var ip = ConvertToUint(value);
             return IpFrom <= ip && ip <= IpTo;
         }
 
-        public bool Less(byte[] value)
+        public static uint ConvertToUint(string value)
         {
-            var ip = BitConverter.ToUInt32(value, 0);
+            var addr = IPAddress.Parse(value).GetAddressBytes();
+            var ipBytes = value.Split('.');
+            if (ipBytes.Length != 4)
+            {
+                throw new InvalidOperationException("value has wrong format when convert to ip");
+            }
+            var ip = new byte[0];
+            if (byte.TryParse(ipBytes[0], out var firstByte)
+                && byte.TryParse(ipBytes[1], out var secondByte)
+                && byte.TryParse(ipBytes[2], out var thirdByte)
+                && byte.TryParse(ipBytes[3], out var fouthByte)
+                )
+            {
+                return BitConverter.ToUInt32(new byte[] { firstByte, secondByte, thirdByte, fouthByte }, 0);
+            }
+            throw new InvalidOperationException("value has wrong format when convert to ip");
+        }
+
+        public bool Less(string value)
+        {
+            var ip = ConvertToUint(value);
             return IpFrom > ip;
         }
 

@@ -49,13 +49,9 @@ namespace IPLookup.API.InMemoryDataBase
         {
             return header.Value;
         }
-        public Task<T> Get<T>(byte[] ip)
+        public Task<T> SearchByValue<T>(string ip)
              where T : class, IByValueBinarySearchObject
         {
-            if (ip.Length != 4)
-            {
-                throw new ArgumentException("ip is not valid");
-            }
             return Task.FromResult(DataBase.ValueBinarySearch<T>((uint)header.Value.Records, ip, Factory));
         }
         public Task<List<T>> GetItems<T>(int start, int count)
@@ -72,6 +68,9 @@ namespace IPLookup.API.InMemoryDataBase
             }
             return Task.FromResult(list);
         }
-
+        Task<T> IInMemoryGeoDataBase.Get<T>(uint index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

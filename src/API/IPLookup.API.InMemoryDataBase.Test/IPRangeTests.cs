@@ -44,28 +44,28 @@ namespace IPLookup.API.Host.Tests
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
             var ipByteContains = BitConverter.GetBytes(150u);
-            Assert.IsTrue(ipRangeByte.ContainsValue(ipByteContains));
+            Assert.IsTrue(ipRangeByte.ContainsValue("150.0.0.0"));
         }
         [TestMethod]
         public void IpRange_NotContains_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
             var ipByteContains = BitConverter.GetBytes(250u);
-            Assert.IsFalse(ipRangeByte.ContainsValue(ipByteContains));
+            Assert.IsFalse(ipRangeByte.ContainsValue("250.0.0.0"));
         }
         [TestMethod]
         public void IpRange_Less_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
             var ipByteContains = BitConverter.GetBytes(50u);
-            Assert.IsTrue(ipRangeByte.Less(ipByteContains));
+            Assert.IsTrue(ipRangeByte.Less("50.0.0.0"));
         }
         [TestMethod]
         public void IpRange_NotLess_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
             var ipByteContains = BitConverter.GetBytes(150u);
-            Assert.IsFalse(ipRangeByte.Less(ipByteContains));
+            Assert.IsFalse(ipRangeByte.Less("150.0.0.0"));
         }
 
     }

@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using IPLookup.API.InMemoryDataBase;
 using IPLookup.API.Services.Models;
 
 namespace IPLookup.API.Services
 {
     public class GeoDataBaseQuery : IGeoDataBaseQuery
     {
-        Random random = new Random();
-        private readonly IEnumerable<LocationModel> list;
-        public GeoDataBaseQuery()
+
+        public IInMemoryGeoDataBase Client { get; }
+
+        public GeoDataBaseQuery(IInMemoryGeoDataBase client)
         {
-            list = new List<LocationModel>() { new LocationModel() { City = random.Next(1000).ToString(), Latitude = 1, Longitude = 1.2344f },
-                new LocationModel() { City = random.Next(1000).ToString(), Latitude = 2, Longitude = 2.2344f } }.AsEnumerable();
+            Client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public Task<IEnumerable<LocationModel>> GetLocationsByIp(string ip)
+        public async Task<LocationModel> GetLocationsByIp(string ip)
         {
-            return Task.FromResult(list);
+            var ipRange = await Client.SearchByValue<IPRange>(ip);
+            if (ipRange != null)
+            {
+                var location = await Client.Get<Location>(ipRange.LocationIndex);
+               return new LocationModel();
+            }
+            return null;
         }
 
         public Task<IEnumerable<LocationModel>> GetLocationsByCity(string city)

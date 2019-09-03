@@ -255,6 +255,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IPLookup.API.InMemoryDataBase\IPLookup.API.InMemoryDataBase.csproj">
+      <Project>{C9ED7708-2362-4900-A040-F92D98BF688D}</Project>
+      <Name>IPLookup.API.InMemoryDataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPLookup.API.Services\IPLookup.API.Services.csproj">
       <Project>{10E52E7E-A7E0-4510-8776-CEEC7FB8653F}</Project>
       <Name>IPLookup.API.Services</Name>

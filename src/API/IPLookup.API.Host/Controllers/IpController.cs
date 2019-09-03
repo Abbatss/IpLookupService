@@ -21,7 +21,7 @@ namespace IPLookup.API.Host.Controllers
             _query = query ?? throw new ArgumentNullException(nameof(query));
         }
         [System.Web.Mvc.HttpGet]
-        public async Task<JsonResult<IEnumerable<LocationModel>>> GetLocation(string ip)
+        public async Task<JsonResult<LocationModel>> GetLocation(string ip)
         {
             return Json(await _query.GetLocationsByIp(ip));
         }

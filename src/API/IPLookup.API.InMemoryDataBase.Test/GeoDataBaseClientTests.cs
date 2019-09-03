@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -49,7 +50,7 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(1, 1))[0];
             var ipToSearch = expectedIpRange.IpFrom + 1;
-            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
 
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
@@ -63,11 +64,11 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo;
-            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
             ipToSearch = expectedIpRange.IpFrom;
-            actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
+            actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
         }
 
@@ -76,8 +77,16 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo + 1;
-            var actualIpRange = await _client.Get<IPRange>(BitConverter.GetBytes(ipToSearch));
+            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.IsNull(actualIpRange);
+        }
+        private static string UintToIpSrting(uint ip)
+        {
+           var res = BitConverter.GetBytes(ip);
+            
+            var ipstring = $"{res[0].ToString()}.{res[1].ToString()}.{res[2].ToString()}.{res[3].ToString()}";
+            return ipstring;
+               
         }
     }
 }

@@ -27,11 +27,11 @@ namespace IPLookup.API.Host.Tests
             var locationsList = new List<LocationModel>() { new LocationModel() { City = "1", Latitude = 1, Longitude = 1.2344f },
             new LocationModel() { City = "2", Latitude = 2, Longitude = 2.2344f }};
             var ip = "123";
-            queryMoq.Setup(p => p.GetLocationsByIp(ip)).Returns(Task.FromResult(locationsList.AsEnumerable()));
+            queryMoq.Setup(p => p.GetLocationsByIp(ip)).Returns(Task.FromResult(locationsList[0]));
             var controller = new IpController(queryMoq.Object);
             var res = await controller.GetLocation(ip);
             queryMoq.Verify(p => p.GetLocationsByIp(ip), Times.Once);
-            CollectionAssert.AreEquivalent(locationsList, res.Content.ToList()); ;
+            Assert.AreEqual(locationsList[0], res.Content); ;
 
         }
     }
