@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace IPLookup.API.InMemoryDataBase
 {
@@ -28,13 +29,12 @@ namespace IPLookup.API.InMemoryDataBase
             ParseHeaderData(db);
 
         }
-
         private void ParseHeaderData(byte[] db)
         {
             Version = BitConverter.ToInt32(db, 0);
-
             var nameStartIndex = 4;
-            Name = System.Text.Encoding.UTF8.GetString(db, nameStartIndex, NAME_LENGTH);
+
+            Name = GetName(db, nameStartIndex);
 
             var timestampStartIndex = nameStartIndex + NAME_LENGTH;
             Timestamp = BitConverter.ToUInt64(db, timestampStartIndex);
@@ -50,6 +50,25 @@ namespace IPLookup.API.InMemoryDataBase
 
             var offsetLocationsStartIndex = offsetCitiesStartIndex + 4;
             OffsetLocations = BitConverter.ToUInt32(db, offsetLocationsStartIndex);
+        }
+
+        private string GetName(byte[] db, int nameStartIndex)
+        {
+            var convertedName = string.Empty;
+            using (var stream = new MemoryStream(db))
+            {
+                stream.Position = nameStartIndex;
+                var name = new char[NAME_LENGTH];
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    for (int i = 0; i < NAME_LENGTH; i++)
+                    {
+                        name[i] = Convert.ToChar(br.ReadSByte());
+                    }
+                    convertedName = new string(name);
+                }
+            }
+            return convertedName;
         }
     }
 }

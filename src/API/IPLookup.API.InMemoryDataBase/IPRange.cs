@@ -8,10 +8,13 @@ namespace IPLookup.API.InMemoryDataBase
         private const int RANGE_ROW_SIZE = 12;
 
         public uint IpFrom { get; }
+        public int IpToStartIndex { get; private set; }
         public uint IpTo { get; }
         public uint LocationIndex { get; }
 
         private byte[] dataBase;
+
+        public int IpFromStartIndex { get; private set; }
 
         public IPRange(byte[] dataBase, uint index)
         {
@@ -21,13 +24,13 @@ namespace IPLookup.API.InMemoryDataBase
                 throw new InvalidOperationException("Can't read Ip Range Row. Not enough data in DataBase.");
             this.dataBase = dataBase;
 
-            var ipFromStartIndex = startIndex;
-            IpFrom = BitConverter.ToUInt32(dataBase, ipFromStartIndex);
+            IpFromStartIndex = startIndex;
+            IpFrom = BitConverter.ToUInt32(dataBase, IpFromStartIndex);
 
-            var ipToStartIndex = startIndex + 4;
-            IpTo = BitConverter.ToUInt32(dataBase, ipToStartIndex);
+            IpToStartIndex = startIndex + 4;
+            IpTo = BitConverter.ToUInt32(dataBase, IpToStartIndex);
 
-            var locationIndexStartIndex = ipToStartIndex + 4;
+            var locationIndexStartIndex = IpToStartIndex + 4;
             LocationIndex = BitConverter.ToUInt32(dataBase, locationIndexStartIndex);
         }
 
@@ -40,6 +43,7 @@ namespace IPLookup.API.InMemoryDataBase
         public static uint ConvertToUint(string value)
         {
             var addr = IPAddress.Parse(value).GetAddressBytes();
+            
             var ipBytes = value.Split('.');
             if (ipBytes.Length != 4)
             {
