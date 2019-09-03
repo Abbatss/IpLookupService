@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IPLookup.API.InMemoryDataBase
 {
-    public class GeoDataBaseClient
+    public class GeoDataBaseClient: IInMemoryGeoDataBase
     {
         private static byte[] DataBase;
         private const int HEADER_ROW_SIZE = 60;
