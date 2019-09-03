@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="GeoDataBaseLoadPerformanceTests.cs" />
     <Compile Include="GeoDataBaseClientTests.cs" />
+    <Compile Include="IPRangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

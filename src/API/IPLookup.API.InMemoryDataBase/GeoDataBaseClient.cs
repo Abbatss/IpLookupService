@@ -50,7 +50,7 @@ namespace IPLookup.API.InMemoryDataBase
             {
                 throw new ArgumentException("ip is not valid");
             }
-            return Task.FromResult(DataBase.IpBinarySearch(header.Value.OffsetRanges, header.Value.Records, ip));
+            return Task.FromResult(DataBase.ValueBinarySearch<IPRange>((uint)header.Value.Records, ip, (byte[] x, uint y) => new IPRange(x, (int)y)));
         }
         public Task<List<IPRange>> GetIpRanges(int start, int count)
         {
@@ -60,7 +60,7 @@ namespace IPLookup.API.InMemoryDataBase
             {
                 for (int i = start; i < end; i++)
                 {
-                    list.Add(new IPRange(DataBase, header.Value.OffsetRanges, i));
+                    list.Add(new IPRange(DataBase, i));
                 }
             }
             return Task.FromResult(list);

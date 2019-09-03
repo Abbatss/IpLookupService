@@ -4,16 +4,32 @@ namespace IPLookup.API.InMemoryDataBase
 {
     public class GeoBaseHeader
     {
+        public const int HEADER_SIZE = 60;
         private const int NAME_LENGTH = 32;
-        public int Version { get; }
-        public string Name { get; }
-        public ulong Timestamp { get; }
-        public int Records { get; }
-        public uint OffsetRanges { get; }
-        public uint OffsetCities { get; }
+        public int Version { get; private set; }
+        public string Name { get; private set; }
+        public ulong Timestamp { get; private set; }
+        public int Records { get; private set; }
+        public uint OffsetRanges { get; private set; }
+        public uint OffsetCities { get; private set; }
 
-        public uint OffsetLocations { get; }
+        public uint OffsetLocations { get; private set; }
         internal GeoBaseHeader(byte[] db)
+        {
+            if (db is null)
+            {
+                throw new ArgumentNullException(nameof(db));
+            }
+
+            if (db.Length < HEADER_SIZE)
+            {
+                throw new InvalidOperationException("Can't read Header. Not enough data in DataBase.");
+            }
+            ParseHeaderData(db);
+
+        }
+
+        private void ParseHeaderData(byte[] db)
         {
             Version = BitConverter.ToInt32(db, 0);
 
@@ -27,15 +43,13 @@ namespace IPLookup.API.InMemoryDataBase
             Records = BitConverter.ToInt32(db, recordsStartIndex);
 
             var offsetRangesStartIndex = recordsStartIndex + 4;
-            OffsetRanges = BitConverter.ToUInt32(db,offsetRangesStartIndex);
+            OffsetRanges = BitConverter.ToUInt32(db, offsetRangesStartIndex);
 
             var offsetCitiesStartIndex = offsetRangesStartIndex + 4;
             OffsetCities = BitConverter.ToUInt32(db, offsetCitiesStartIndex);
 
             var offsetLocationsStartIndex = offsetCitiesStartIndex + 4;
             OffsetLocations = BitConverter.ToUInt32(db, offsetLocationsStartIndex);
-
         }
-
     }
 }

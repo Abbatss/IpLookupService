@@ -2,7 +2,7 @@
 
 namespace IPLookup.API.InMemoryDataBase
 {
-    public class IPRange
+    public class IPRange : IByValueBinarySearch
     {
         private const int RANGE_ROW_SIZE = 12;
 
@@ -30,13 +30,13 @@ namespace IPLookup.API.InMemoryDataBase
             LocationIndex = BitConverter.ToUInt32(dataBase, locationIndexStartIndex);
         }
 
-        internal bool ContainsIp(byte[] value)
+        public bool ContainsValue(byte[] value)
         {
             var ip = BitConverter.ToUInt32(value, 0);
             return IpFrom <= ip && ip <= IpTo;
         }
 
-        internal bool Less(byte[] value)
+        public bool Less(byte[] value)
         {
             var ip = BitConverter.ToUInt32(value, 0);
             return IpFrom > ip;

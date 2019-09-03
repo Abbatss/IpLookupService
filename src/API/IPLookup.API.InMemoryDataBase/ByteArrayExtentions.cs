@@ -1,4 +1,6 @@
-﻿namespace IPLookup.API.InMemoryDataBase
+﻿using System;
+
+namespace IPLookup.API.InMemoryDataBase
 {
     internal static class ByteArrayExtentions
     {
@@ -12,26 +14,26 @@
         /// <param name="rowOffset">where to find value in a row</param>
         /// /// <param name="value">what to find</param>
         /// <returns></returns>
-        internal static T ValueBinarySearch<T>(this byte[] dataBase, uint startIndex, int rowCount, byte[] value)
-            where T : new()
+        internal static T ValueBinarySearch<T>(this byte[] dataBase, uint rowCount, byte[] value, Func<byte[], uint, T> objectFactory)
+            where T : class, IByValueBinarySearch
         {
             if (rowCount == 0)
             {
-                default(T);
+                return null;
             }
-            return BinarySearchRange<T>(dataBase, startIndex, rowCount, value);
+            return BinarySearchRange<T>(dataBase, rowCount, value, objectFactory);
         }
 
-        private static T BinarySearchRange<T>(byte[] dataBase, uint startIndex, int rowCount, byte[] value)
-            where T:new()
+        private static T BinarySearchRange<T>(byte[] dataBase, uint rowCount, byte[] value, Func<byte[], uint, T> objectFactory)
+            where T : class, IByValueBinarySearch
         {
-            var minRow = 0;
+            var minRow = 0u;
             var maxRow = rowCount - 1;
             while (minRow <= maxRow)
             {
-                int midRow = (minRow + maxRow) / 2;
-                var ipRange = new T(dataBase, startIndex, midRow);
-                if (ipRange.ContainsIp(value))
+                var midRow = (minRow + maxRow) / 2;
+                var ipRange = objectFactory.Invoke(dataBase, midRow);
+                if (ipRange.ContainsValue(value))
                 {
                     return ipRange;
                 }
