@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace IPLookup.API.InMemoryDataBase
+namespace Common
 {
     public static class SByteToStrinConverter
     {
-        public static string ConvertToString(byte[] bytes, int startIndex, int lenght)
+        public static string ConvertToString(this byte[] fileBytes, int startIndex, int lenght)
         {
             var convertedName = string.Empty;
-            using (var stream = new MemoryStream(bytes))
+            using (var stream = new MemoryStream(fileBytes))
             {
                 stream.Position = startIndex;
                 var name = new char[lenght];

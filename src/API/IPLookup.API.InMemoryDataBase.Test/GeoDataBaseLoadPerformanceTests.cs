@@ -40,9 +40,7 @@ namespace IPLookup.API.Host.Tests
             }
             TestContext.WriteLine($"dbClient Init time min: {minTime}");
             TestContext.WriteLine($"dbClient Init time max: {maxTime}");
-
         }
-
         private long InitDBTime()
         {
             var dbClient = new GeoDataBaseClient("./DataBase/geobase.dat");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.IO;
 
 namespace IPLookup.API.InMemoryDataBase
@@ -54,7 +55,7 @@ namespace IPLookup.API.InMemoryDataBase
 
         private string GetName(byte[] db, int nameStartIndex)
         {
-            return SByteToStrinConverter.ConvertToString(db, nameStartIndex, NAME_LENGTH);
+            return db.ConvertToString(nameStartIndex, NAME_LENGTH);
         }
     }
 }

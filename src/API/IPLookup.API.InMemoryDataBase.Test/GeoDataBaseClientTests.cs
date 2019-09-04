@@ -22,6 +22,12 @@ namespace IPLookup.API.Host.Tests
             _header = db.GetHeader();
         }
         [TestMethod]
+        public void Constructor_Test()
+        {
+            Assert.ThrowsException<ArgumentException>(() => new GeoDataBaseClient(""));
+            Assert.ThrowsException<ArgumentNullException>(() => new GeoDataBaseClient("12", null));
+        }
+        [TestMethod]
         public void GetHeader_Test()
         {
             var header = _client.GetHeader();
