@@ -97,11 +97,22 @@ namespace IPLookup.API.Host.Tests
         {
             var citiesIndex = await _client.GetItems<CitiesIndex>(0, _header.Records);
             Assert.AreEqual(_header.Records, citiesIndex.Count);
-            var first = citiesIndex.Where(c => c.CitiesInfoIndex == 0u).ToList();
-            var second = citiesIndex.FirstOrDefault(c => c.CitiesInfoIndex == 2u);
             Assert.AreEqual(citiesIndex[0], await _client.Get<CitiesIndex>(0));
             Assert.AreEqual(citiesIndex[1], await _client.Get<CitiesIndex>(1));
             Assert.AreEqual(citiesIndex[_header.Records - 1], await _client.Get<CitiesIndex>(_header.Records - 1));
+        }
+        [TestMethod]
+        public async Task ScanCitiesIndex_Test()
+        {
+            var expected = await _client.Get<CitiesIndex>(10);
+            var res = await _client.Scan<CitiesIndex>(expected.Location.City);
+            Assert.AreEqual(expected, res);
+        }
+        [TestMethod]
+        public async Task ScanCitiesIndex_NotFound_Test()
+        {
+            var res = await _client.Scan<CitiesIndex>("42424242");
+            Assert.IsNull(res);
         }
     }
 }

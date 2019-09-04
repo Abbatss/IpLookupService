@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IPLookup.API.InMemoryDataBase
 {
     public class CitiesIndex : IByValueBinarySearchObject
     {
         private const int CITIES_ROW_SIZE = 4;
-        public uint CitiesInfoIndex { get; private set; }
+        public uint LocationInfoIndex { get; private set; }
 
         public uint ItemIndex { get; private set; }
         public LocationInfo Location { get; private set; }
@@ -19,15 +20,12 @@ namespace IPLookup.API.InMemoryDataBase
             if (dataBase.Length < startIndex + CITIES_ROW_SIZE)
                 throw new InvalidOperationException("Can't read Cities index Row. Not enough data in DataBase.");
 
-            CitiesInfoIndex = BitConverter.ToUInt32(dataBase, startIndex);
-            if (CitiesInfoIndex != 0)
-            {
-                Location = LocationInfo.FromAbsolutePostition(dataBase, CitiesInfoIndex - 36);
-            }
+            LocationInfoIndex = BitConverter.ToUInt32(dataBase, startIndex);
+            Location = LocationInfo.FromAbsolutePostition(dataBase, LocationInfoIndex);
         }
         public bool ContainsValue(string value)
         {
-            return value == Location.City;
+            return value.TrimEnd('\0') == Location?.City?.TrimEnd('\0');
         }
 
         public bool LessThan(string value)
@@ -46,6 +44,23 @@ namespace IPLookup.API.InMemoryDataBase
                 return Location.City[0] < valueChars[0];
             }
             return Location?.City?.Length < valueChars.Length;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CitiesIndex index &&
+                   LocationInfoIndex == index.LocationInfoIndex &&
+                   ItemIndex == index.ItemIndex &&
+                   EqualityComparer<LocationInfo>.Default.Equals(Location, index.Location);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -334034214;
+            hashCode = hashCode * -1521134295 + LocationInfoIndex.GetHashCode();
+            hashCode = hashCode * -1521134295 + ItemIndex.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<LocationInfo>.Default.GetHashCode(Location);
+            return hashCode;
         }
     }
 }

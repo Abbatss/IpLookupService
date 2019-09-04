@@ -18,7 +18,7 @@ namespace Common
                 {
                     for (int i = 0; i < lenght; i++)
                     {
-                        name[i] = Convert.ToChar(br.ReadSByte());
+                        name[i] = (char)br.ReadSByte();
                     }
                     convertedName = new string(name);
                 }
@@ -27,7 +27,7 @@ namespace Common
             var second = System.Text.Encoding.UTF8.GetString(fileBytes, startIndex, lenght);
             if (second != convertedName)
             {
-            throw new Exception($"strings are not equal {second} , {convertedName}");
+                throw new Exception($"strings are not equal {second} , {convertedName}");
             }
 #endif
             return convertedName;

@@ -34,7 +34,7 @@ namespace IPLookup.API.Services
         {
             var list = new List<LocationModel>();
             var locationIndex = await Client.SearchFirstItemByValue<CitiesIndex>(city);
-            while (locationIndex?.Location?.City == city)
+            while (locationIndex.ContainsValue(city))
             {
                 list.Add(locationIndex.Location.MapToModel());
                 locationIndex = await Client.Get<CitiesIndex>((int)locationIndex.ItemIndex + 1);

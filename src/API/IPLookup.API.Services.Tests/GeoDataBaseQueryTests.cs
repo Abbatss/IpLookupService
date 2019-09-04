@@ -53,9 +53,10 @@ namespace IPLookup.API.Services.Tests
         public async Task GetLocationByCity_Test()
         {
             var clientMoq = new Moq.Mock<IInMemoryGeoDataBase>();
-            var cityToSearch = "city";
             var citiesIndex = new CitiesIndex(DataBase, 0);
             var citiesIndex2 = new CitiesIndex(DataBase, 1);
+            var cityToSearch = citiesIndex.Location.City;
+
             clientMoq.Setup(p => p.SearchFirstItemByValue<CitiesIndex>(cityToSearch)).Returns(Task.FromResult(citiesIndex));
             clientMoq.Setup(p => p.Get<CitiesIndex>((int)citiesIndex2.ItemIndex)).Returns(Task.FromResult(citiesIndex2));
             var query = new GeoDataBaseQuery(clientMoq.Object);

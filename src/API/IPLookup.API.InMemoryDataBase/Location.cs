@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace IPLookup.API.InMemoryDataBase
 {
@@ -12,6 +13,7 @@ namespace IPLookup.API.InMemoryDataBase
         public string Postal { get; private set; }
         public string City { get; private set; }
 
+        public sbyte[] CityBytes { get; set; }
         public string Organization { get; private set; }
 
         public float Latitude { get; private set; }
@@ -32,9 +34,13 @@ namespace IPLookup.API.InMemoryDataBase
                 throw new InvalidOperationException("Can't read Location index Row. Not enough data in DataBase.");
             ParseRowData(dataBase, startIndex);
         }
-        internal static LocationInfo FromAbsolutePostition(byte[] dataBase, uint citiesInfoIndex)
+        internal static LocationInfo FromAbsolutePostition(byte[] dataBase, uint LocationInfoIndex)
         {
-            return new LocationInfo(dataBase, citiesInfoIndex, 0);
+            if (LocationInfoIndex >= new GeoBaseHeader(dataBase).OffsetLocations)
+            {
+                return new LocationInfo(dataBase, LocationInfoIndex - 36, 0);
+            }
+            return null;
         }
 
         public override bool Equals(object obj)
@@ -76,6 +82,19 @@ namespace IPLookup.API.InMemoryDataBase
 
             Latitude = BitConverter.ToSingle(db, startIndex + 88);
             Longitude = BitConverter.ToSingle(db, startIndex + 92);
+            CityBytes = new sbyte[20];
+            using (var stream = new MemoryStream(db))
+            {
+                stream.Position = startIndex + 32 + 4;
+                using (BinaryReader br = new BinaryReader(stream))
+                {
+                    for (int i = 4; i < 24; i++)
+                    {
+                        CityBytes[i - 4] = br.ReadSByte();
+                    }
+                }
+            }
+
         }
     }
 }
