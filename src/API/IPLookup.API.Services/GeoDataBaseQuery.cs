@@ -19,20 +19,27 @@ namespace IPLookup.API.Services
             Client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<LocationModel> GetLocationsByIp(string ip)
+        public async Task<LocationModel> GetLocationByIp(string ip)
         {
-            var ipRange = await Client.SearchByValue<IPRange>(ip);
+            var ipRange = await Client.SearchFirstItemByValue<IPRange>(ip);
             if (ipRange != null)
             {
                 var location = await Client.Get<Location>(ipRange.LocationIndex);
-               return new LocationModel();
+                return location?.MapToModel();
             }
             return null;
         }
-
-        public Task<IEnumerable<LocationModel>> GetLocationsByCity(string city)
+        //IAsyncEnumerable will be much better but only after c# 8 
+        public async Task<List<LocationModel>> GetLocationsByCity(string city)
         {
-            throw new NotImplementedException();
+            var list = new List<LocationModel>();
+            var locationIndex = await Client.SearchFirstItemByValue<CitiesIndex>(city);
+            while (locationIndex?.Location?.City == city)
+            {
+                list.Add(locationIndex.Location.MapToModel());
+                locationIndex = await Client.Get<CitiesIndex>((int)locationIndex.ItemIndex + 1);
+            }
+            return list;
         }
     }
 }

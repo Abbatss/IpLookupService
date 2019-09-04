@@ -23,7 +23,7 @@ namespace IPLookup.API.Host.Controllers
         [System.Web.Mvc.HttpGet]
         public async Task<JsonResult<LocationModel>> GetLocation(string ip)
         {
-            return Json(await _query.GetLocationsByIp(ip));
+            return Json(await _query.GetLocationByIp(ip));
         }
 
     }

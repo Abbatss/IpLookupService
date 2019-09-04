@@ -1,6 +1,5 @@
 ﻿using Common;
 using System;
-using System.Net;
 
 namespace IPLookup.API.InMemoryDataBase
 {
@@ -11,19 +10,16 @@ namespace IPLookup.API.InMemoryDataBase
         public uint IpFrom { get; }
         public int IpToStartIndex { get; private set; }
         public uint IpTo { get; }
-        public uint LocationIndex { get; }
-
-        private byte[] dataBase;
+        public int LocationIndex { get; }
 
         public int IpFromStartIndex { get; private set; }
 
-        public IPRange(byte[] dataBase, uint index)
+        public IPRange(byte[] dataBase, int index)
         {
             var offset = new GeoBaseHeader(dataBase).OffsetRanges;
             var startIndex = (int)(offset + (RANGE_ROW_SIZE) * index);
             if (dataBase.Length < startIndex + RANGE_ROW_SIZE)
                 throw new InvalidOperationException("Can't read Ip Range Row. Not enough data in DataBase.");
-            this.dataBase = dataBase;
 
             IpFromStartIndex = startIndex;
             IpFrom = BitConverter.ToUInt32(dataBase, IpFromStartIndex);
@@ -32,7 +28,7 @@ namespace IPLookup.API.InMemoryDataBase
             IpTo = BitConverter.ToUInt32(dataBase, IpToStartIndex);
 
             var locationIndexStartIndex = IpToStartIndex + 4;
-            LocationIndex = BitConverter.ToUInt32(dataBase, locationIndexStartIndex);
+            LocationIndex = BitConverter.ToInt32(dataBase, locationIndexStartIndex);
         }
 
         public bool ContainsValue(string value)
@@ -46,10 +42,10 @@ namespace IPLookup.API.InMemoryDataBase
            return value.ConvertFromIpStringToUint();
         }
 
-        public bool Less(string value)
+        public bool LessThan(string value)
         {
             var ip = ConvertToUint(value);
-            return IpFrom > ip;
+            return IpFrom < ip;
         }
 
         public override bool Equals(object obj)

@@ -15,21 +15,21 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpfrom = 12u;
             var expectedIpTo = 120u;
-            var expectedIndex = 11u;
+            var expectedIndex = 11;
             var actual = GetIpRange(expectedIpfrom, expectedIpTo, expectedIndex);
             Assert.AreEqual(expectedIpfrom, actual.IpFrom);
             Assert.AreEqual(expectedIpTo, actual.IpTo);
             Assert.AreEqual(expectedIndex, actual.LocationIndex);
         }
 
-        private static IPRange GetIpRange(uint expectedIpfrom, uint expectedIpTo, uint expectedIndex)
+        private static IPRange GetIpRange(uint expectedIpfrom, uint expectedIpTo, int expectedIndex)
         {
             var ipRangeByte = new byte[72];
             BitConverter.GetBytes(60u).CopyTo(ipRangeByte, 48);
             BitConverter.GetBytes(expectedIpfrom).CopyTo(ipRangeByte, 60);
             BitConverter.GetBytes(expectedIpTo).CopyTo(ipRangeByte, 64);
             BitConverter.GetBytes(expectedIndex).CopyTo(ipRangeByte, 68);
-            return new IPRange(ipRangeByte, 0u);
+            return new IPRange(ipRangeByte, 0);
         }
 
         [TestMethod]
@@ -43,29 +43,25 @@ namespace IPLookup.API.Host.Tests
         public void IpRange_Contains_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
-            var ipByteContains = BitConverter.GetBytes(150u);
             Assert.IsTrue(ipRangeByte.ContainsValue("150.0.0.0"));
         }
         [TestMethod]
         public void IpRange_NotContains_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
-            var ipByteContains = BitConverter.GetBytes(250u);
-            Assert.IsFalse(ipRangeByte.ContainsValue("250.0.0.0"));
+            Assert.IsFalse(ipRangeByte.ContainsValue("50.0.0.0"));
         }
         [TestMethod]
-        public void IpRange_Less_Test()
+        public void IpRange_LessThan_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
-            var ipByteContains = BitConverter.GetBytes(50u);
-            Assert.IsTrue(ipRangeByte.Less("50.0.0.0"));
+            Assert.IsTrue(ipRangeByte.LessThan("250.0.0.0"));
         }
         [TestMethod]
         public void IpRange_NotLess_Test()
         {
             var ipRangeByte = GetIpRange(100u, 200u, 0);
-            var ipByteContains = BitConverter.GetBytes(150u);
-            Assert.IsFalse(ipRangeByte.Less("150.0.0.0"));
+            Assert.IsFalse(ipRangeByte.LessThan("50.0.0.0"));
         }
 
     }

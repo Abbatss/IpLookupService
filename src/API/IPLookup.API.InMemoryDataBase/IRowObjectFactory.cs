@@ -2,6 +2,6 @@
 {
     public interface IRowObjectFactory
     {
-        T CreateInstance<T>(byte[] db, uint index) where T : class, IByValueBinarySearchObject;
+        T CreateInstance<T>(byte[] db, int index) where T : class;
     }
 }

@@ -3,6 +3,6 @@
     public interface IByValueBinarySearchObject
     {
         bool ContainsValue(string value);
-        bool Less(string value);
+        bool LessThan(string value);
     }
 }

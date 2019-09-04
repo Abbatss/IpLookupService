@@ -50,19 +50,19 @@ namespace IPLookup.API.Host.Tests
         public async Task GetIpRanges_OutOfIndex_Test()
         {
             Assert.AreEqual(0, (await _client.GetItems<IPRange>(-1, _header.Records)).Count);
-            Assert.AreEqual(0, (await _client.GetItems<IPRange>(0, _header.Records + 1)).Count);
+            Assert.AreEqual(_header.Records, (await _client.GetItems<IPRange>(0, _header.Records + 1)).Count);
         }
         [TestMethod]
         public async Task GetIpRange_Test()
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(1, 1))[0];
             var ipToSearch = expectedIpRange.IpFrom + 1;
-            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
+            var actualIpRange = await _client.SearchFirstItemByValue<IPRange>(UintToIpSrting(ipToSearch));
 
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
             Assert.AreEqual(55473u, actualIpRange.IpFrom);
-            Assert.AreEqual(1u, actualIpRange.LocationIndex);
+            Assert.AreEqual(1, actualIpRange.LocationIndex);
             Assert.AreEqual(151737u, actualIpRange.IpTo);
         }
 
@@ -71,11 +71,11 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo;
-            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
+            var actualIpRange = await _client.SearchFirstItemByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
 
             ipToSearch = expectedIpRange.IpFrom;
-            actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
+            actualIpRange = await _client.SearchFirstItemByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.AreEqual(expectedIpRange, actualIpRange);
         }
 
@@ -84,7 +84,7 @@ namespace IPLookup.API.Host.Tests
         {
             var expectedIpRange = (await _client.GetItems<IPRange>(_header.Records - 1, 1))[0];
             var ipToSearch = expectedIpRange.IpTo + 1;
-            var actualIpRange = await _client.SearchByValue<IPRange>(UintToIpSrting(ipToSearch));
+            var actualIpRange = await _client.SearchFirstItemByValue<IPRange>(UintToIpSrting(ipToSearch));
             Assert.IsNull(actualIpRange);
         }
         private static string UintToIpSrting(uint ip)

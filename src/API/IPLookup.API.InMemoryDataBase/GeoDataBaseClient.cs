@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IPLookup.API.InMemoryDataBase
 {
-    public class GeoDataBaseClient: IInMemoryGeoDataBase
+    public class GeoDataBaseClient : IInMemoryGeoDataBase
     {
         private static byte[] DataBase;
         private const int HEADER_ROW_SIZE = 60;
@@ -49,28 +49,29 @@ namespace IPLookup.API.InMemoryDataBase
         {
             return header.Value;
         }
-        public Task<T> SearchByValue<T>(string ip)
+        public Task<T> SearchFirstItemByValue<T>(string value)
              where T : class, IByValueBinarySearchObject
         {
-            return Task.FromResult(DataBase.ValueBinarySearch<T>((uint)header.Value.Records, ip, Factory));
+            return Task.FromResult(DataBase.ValueBinarySearch<T>(header.Value.Records, value, Factory));
         }
         public Task<List<T>> GetItems<T>(int start, int count)
              where T : class, IByValueBinarySearchObject
         {
             var list = new List<T>();
             var end = start + count;
-            if (start >= 0 && end <= header.Value.Records)
+            if (start >= 0)
             {
-                for (int i = start; i < end; i++)
+                for (int i = start; i < end && i < header.Value.Records; i++)
                 {
-                    list.Add(Factory.CreateInstance<T>(DataBase, (uint)i));
+                    list.Add(Factory.CreateInstance<T>(DataBase, i));
                 }
             }
             return Task.FromResult(list);
         }
-        Task<T> IInMemoryGeoDataBase.Get<T>(uint index)
+        public Task<T> Get<T>(int index)
+            where T : class
         {
-            throw new NotImplementedException();
+            return Task.FromResult(Factory.CreateInstance<T>(DataBase, index));
         }
     }
 }

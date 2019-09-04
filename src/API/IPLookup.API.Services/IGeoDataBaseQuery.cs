@@ -7,7 +7,7 @@ namespace IPLookup.API.Services
 {
     public interface IGeoDataBaseQuery
     {
-        Task<LocationModel> GetLocationsByIp(string ip);
-        Task<IEnumerable<LocationModel>> GetLocationsByCity(string city);
+        Task<LocationModel> GetLocationByIp(string ip);
+        Task<List<LocationModel>> GetLocationsByCity(string city);
     }
 }

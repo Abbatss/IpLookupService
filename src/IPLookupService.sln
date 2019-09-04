@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FE79BF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{86A42CF3-B27E-4496-A772-4E01CBA88DB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLookup.API.Services.Tests", "API\IPLookup.API.Services.Tests\IPLookup.API.Services.Tests.csproj", "{2B42C1EC-794B-40C9-A530-90003C1EC88A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{86A42CF3-B27E-4496-A772-4E01CBA88DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86A42CF3-B27E-4496-A772-4E01CBA88DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86A42CF3-B27E-4496-A772-4E01CBA88DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B42C1EC-794B-40C9-A530-90003C1EC88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B42C1EC-794B-40C9-A530-90003C1EC88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B42C1EC-794B-40C9-A530-90003C1EC88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B42C1EC-794B-40C9-A530-90003C1EC88A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{F4FE21AA-821C-462C-910F-405B14362FF5} = {7ACB555B-1A78-41CF-8A49-B6B09502F413}
 		{29858DF8-2665-45B0-ACBA-FBEC24968F20} = {CEBC4E74-F57B-4CBF-9EA9-A670D20D0DC9}
 		{86A42CF3-B27E-4496-A772-4E01CBA88DB3} = {FE79BF47-0B61-42C5-B245-589F1AE1B68B}
+		{2B42C1EC-794B-40C9-A530-90003C1EC88A} = {CEBC4E74-F57B-4CBF-9EA9-A670D20D0DC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F98AC11A-4CF2-46EC-959A-7B64933122F3}
