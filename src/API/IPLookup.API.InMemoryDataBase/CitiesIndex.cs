@@ -8,7 +8,7 @@ namespace IPLookup.API.InMemoryDataBase
         public uint CitiesInfoIndex { get; private set; }
 
         public uint ItemIndex { get; private set; }
-        public Location Location { get; private set; }
+        public LocationInfo Location { get; private set; }
 
 
         public CitiesIndex(byte[] dataBase, uint index)
@@ -20,7 +20,10 @@ namespace IPLookup.API.InMemoryDataBase
                 throw new InvalidOperationException("Can't read Cities index Row. Not enough data in DataBase.");
 
             CitiesInfoIndex = BitConverter.ToUInt32(dataBase, startIndex);
-            Location = new Location(dataBase, CitiesInfoIndex);
+            if (CitiesInfoIndex != 0)
+            {
+                Location = LocationInfo.FromAbsolutePostition(dataBase, CitiesInfoIndex - 36);
+            }
         }
         public bool ContainsValue(string value)
         {

@@ -23,6 +23,13 @@ namespace Common
                     convertedName = new string(name);
                 }
             }
+#if DEBUG
+            var second = System.Text.Encoding.UTF8.GetString(fileBytes, startIndex, lenght);
+            if (second != convertedName)
+            {
+            throw new Exception($"strings are not equal {second} , {convertedName}");
+            }
+#endif
             return convertedName;
         }
     }

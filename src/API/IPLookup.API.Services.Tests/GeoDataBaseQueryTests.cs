@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
+using IPLookup.API.Services.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -38,34 +39,39 @@ namespace IPLookup.API.Services.Tests
         {
             var clientMoq = new Moq.Mock<IInMemoryGeoDataBase>();
             var ipToSearch = "12";
-            var ipRange = new IPRange(DataBase, 1);
-            var location = new Location(DataBase, (uint)ipRange.LocationIndex);
+            var ipRange = new IPRange(DataBase, 0);
+            var location = new LocationInfo(DataBase, ipRange.LocationIndex);
             clientMoq.Setup(p => p.SearchFirstItemByValue<IPRange>(ipToSearch)).Returns(Task.FromResult(ipRange));
-            clientMoq.Setup(p => p.Get<Location>(ipRange.LocationIndex)).Returns(Task.FromResult(location));
+            clientMoq.Setup(p => p.Get<LocationInfo>(ipRange.LocationIndex)).Returns(Task.FromResult(location));
             var query = new GeoDataBaseQuery(clientMoq.Object);
             var res = await query.GetLocationByIp(ipToSearch);
-            Assert.AreEqual(location, res);
+            CompareLocationToLocationModel(location, res);
             clientMoq.Verify(p => p.SearchFirstItemByValue<IPRange>(ipToSearch), Times.Once);
-            clientMoq.Verify(p => p.Get<Location>(ipRange.LocationIndex), Times.Once);
+            clientMoq.Verify(p => p.Get<LocationInfo>(ipRange.LocationIndex), Times.Once);
         }
         [TestMethod]
         public async Task GetLocationByCity_Test()
         {
             var clientMoq = new Moq.Mock<IInMemoryGeoDataBase>();
             var cityToSearch = "city";
-            var citiesIndex = new CitiesIndex(DataBase, 1);
-            var citiesIndex2 = new CitiesIndex(DataBase, 2);
+            var citiesIndex = new CitiesIndex(DataBase, 0);
+            var citiesIndex2 = new CitiesIndex(DataBase, 1);
             clientMoq.Setup(p => p.SearchFirstItemByValue<CitiesIndex>(cityToSearch)).Returns(Task.FromResult(citiesIndex));
             clientMoq.Setup(p => p.Get<CitiesIndex>((int)citiesIndex2.ItemIndex)).Returns(Task.FromResult(citiesIndex2));
             var query = new GeoDataBaseQuery(clientMoq.Object);
             var res = await query.GetLocationsByCity(cityToSearch);
-            Assert.AreEqual(citiesIndex.Location.City, res[0].City);
-            Assert.AreEqual(citiesIndex.Location.Country, res[0].Country);
-            Assert.AreEqual(citiesIndex.Location.Latitude, res[0].Latitude);
-            Assert.AreEqual(citiesIndex.Location.Longitude, res[0].Longitude);
-            Assert.AreEqual(citiesIndex.Location.Organization, res[0].Organization);
-            Assert.AreEqual(citiesIndex.Location.Postal, res[0].Postal);
-            Assert.AreEqual(citiesIndex.Location.Region, res[0].Region);
+            CompareLocationToLocationModel(citiesIndex.Location, res[0]);
+        }
+
+        private static void CompareLocationToLocationModel(LocationInfo location, LocationModel locationModel)
+        {
+            Assert.AreEqual(location.City, locationModel.City);
+            Assert.AreEqual(location.Country, locationModel.Country);
+            Assert.AreEqual(location.Latitude, locationModel.Latitude);
+            Assert.AreEqual(location.Longitude, locationModel.Longitude);
+            Assert.AreEqual(location.Organization, locationModel.Organization);
+            Assert.AreEqual(location.Postal, locationModel.Postal);
+            Assert.AreEqual(location.Region, locationModel.Region);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace IPLookup.API.Services
             var ipRange = await Client.SearchFirstItemByValue<IPRange>(ip);
             if (ipRange != null)
             {
-                var location = await Client.Get<Location>(ipRange.LocationIndex);
+                var location = await Client.Get<LocationInfo>(ipRange.LocationIndex);
                 return location?.MapToModel();
             }
             return null;

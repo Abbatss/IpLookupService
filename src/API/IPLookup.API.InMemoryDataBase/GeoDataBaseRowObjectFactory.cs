@@ -13,11 +13,11 @@ namespace IPLookup.API.InMemoryDataBase
             }
             if (typeof(T) == typeof(CitiesIndex))
             {
-                return new IPRange(db, index) as T;
+                return new CitiesIndex(db, (uint)index) as T;
             }
-            if (typeof(T) == typeof(Location))
+            if (typeof(T) == typeof(LocationInfo))
             {
-                return new IPRange(db, index) as T;
+                return new LocationInfo(db, index) as T;
             }
             throw new InvalidOperationException($"type {typeof(T)} is not supported by row factory");
         }
