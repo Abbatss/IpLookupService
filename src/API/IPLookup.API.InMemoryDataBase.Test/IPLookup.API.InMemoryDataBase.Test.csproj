@@ -65,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{86a42cf3-b27e-4496-a772-4e01cba88db3}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPLookup.API.Host\IPLookup.API.Host.csproj">
       <Project>{F6F067AE-2311-41C9-A56E-E8FA84D28ED0}</Project>
       <Name>IPLookup.API.Host</Name>

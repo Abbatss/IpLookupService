@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
+using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IPLookup.API.Host.Tests
@@ -82,11 +83,7 @@ namespace IPLookup.API.Host.Tests
         }
         private static string UintToIpSrting(uint ip)
         {
-           var res = BitConverter.GetBytes(ip);
-            
-            var ipstring = $"{res[0].ToString()}.{res[1].ToString()}.{res[2].ToString()}.{res[3].ToString()}";
-            return ipstring;
-               
+            return ip.ToIpString();
         }
     }
 }

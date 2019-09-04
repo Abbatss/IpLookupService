@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="DataBase\geobase.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

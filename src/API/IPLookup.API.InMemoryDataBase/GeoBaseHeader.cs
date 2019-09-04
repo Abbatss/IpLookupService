@@ -54,21 +54,7 @@ namespace IPLookup.API.InMemoryDataBase
 
         private string GetName(byte[] db, int nameStartIndex)
         {
-            var convertedName = string.Empty;
-            using (var stream = new MemoryStream(db))
-            {
-                stream.Position = nameStartIndex;
-                var name = new char[NAME_LENGTH];
-                using (BinaryReader br = new BinaryReader(stream))
-                {
-                    for (int i = 0; i < NAME_LENGTH; i++)
-                    {
-                        name[i] = Convert.ToChar(br.ReadSByte());
-                    }
-                    convertedName = new string(name);
-                }
-            }
-            return convertedName;
+            return SByteToStrinConverter.ConvertToString(db, nameStartIndex, NAME_LENGTH);
         }
     }
 }
