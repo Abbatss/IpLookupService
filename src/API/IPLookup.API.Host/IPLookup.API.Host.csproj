@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <Import Project="..\..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.12\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('..\..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.7.12\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -258,6 +257,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{86a42cf3-b27e-4496-a772-4e01cba88db3}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPLookup.API.InMemoryDataBase\IPLookup.API.InMemoryDataBase.csproj">
       <Project>{C9ED7708-2362-4900-A040-F92D98BF688D}</Project>
       <Name>IPLookup.API.InMemoryDataBase</Name>

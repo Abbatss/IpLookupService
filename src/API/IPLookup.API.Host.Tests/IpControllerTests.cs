@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using IPLookup.API.Host.Controllers;
@@ -14,6 +15,7 @@ namespace IPLookup.API.Host.Tests
     [TestClass]
     public class IpControllerTests
     {
+        private readonly JsonSerializer _serializer = JsonSerializer.Create();
         private Moq.Mock<IGeoDataBaseQuery> queryMoq = new Moq.Mock<IGeoDataBaseQuery>();
         [TestMethod]
         public void ConstructorTest()
@@ -33,6 +35,29 @@ namespace IPLookup.API.Host.Tests
             queryMoq.Verify(p => p.GetLocationByIp(ip), Times.Once);
             Assert.AreEqual(locationsList[0], res.Content); ;
 
+        }
+        [TestMethod]
+        public async Task GetLocationsTest()
+        {
+            var locationsList = new List<LocationModel>() {
+                new LocationModel() { City = "1", Latitude = 1, Longitude = 1.2344f },
+                new LocationModel() { City = "2", Latitude = 2, Longitude = 2.2344f }};
+            var city = "123";
+            queryMoq.Setup(p => p.GetLocationsByCity(city)).Returns(Task.FromResult(locationsList));
+            var controller = new IpController(queryMoq.Object);
+            var res = await controller.GetLocations(city);
+            queryMoq.Verify(p => p.GetLocationsByCity(city), Times.Once);
+
+            Assert.AreEqual(Serialize(locationsList), Serialize(res.Content)); ;
+
+        }
+        public string Serialize<T>(T obj)
+        {
+            using (var writer = new StringWriter())
+            {
+                _serializer.Serialize(writer, obj);
+                return writer.ToString();
+            }
         }
     }
 }

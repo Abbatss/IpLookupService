@@ -5,21 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataBase\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DataBase\geobase.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

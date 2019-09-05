@@ -75,6 +75,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{86a42cf3-b27e-4496-a772-4e01cba88db3}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPLookup.API.InMemoryDataBase\IPLookup.API.InMemoryDataBase.csproj">
       <Project>{C9ED7708-2362-4900-A040-F92D98BF688D}</Project>
       <Name>IPLookup.API.InMemoryDataBase</Name>
