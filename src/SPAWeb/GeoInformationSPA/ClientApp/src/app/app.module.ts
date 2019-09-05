@@ -39,7 +39,6 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     ])
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' },
-  {provide: 'BASE_URL', useValue : 'https://localhost:44365/api'},
   {provide: RouteReuseStrategy, useClass: CacheRouteReuseStrategy},
   { provide: LocationsAbstractService, useClass: LocationsService },
 ],
