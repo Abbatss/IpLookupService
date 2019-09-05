@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, RouteReuseStrategy } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -10,6 +10,7 @@ import { IpSearchComponent } from './ip-search/ip-search.component';
 import { CitySearchComponent } from './city-search/city-search.component';
 import {NgxMaskModule, IConfig} from 'ngx-mask'
 import {APP_BASE_HREF} from '@angular/common';
+import {CacheRouteReuseStrategy} from './router-strategy';
 import { LocationDetailsComponent } from './location-details/location-details.component';
 
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -35,7 +36,8 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     ])
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' },
-  {provide: 'BASE_URL', useValue : 'https://localhost:44365/api'}
+  {provide: 'BASE_URL', useValue : 'https://localhost:44365/api'},
+  {provide: RouteReuseStrategy, useClass: CacheRouteReuseStrategy}
 ],
   bootstrap: [AppComponent]
 })
