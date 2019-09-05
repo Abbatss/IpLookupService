@@ -1,0 +1,7 @@
+{
+  "EnvironmentSettings": {
+  },
+  "LocationsLookupAPI": {
+    "BaseURL": "https://localhost:44365/api/ip"
+  }
+}
