@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+       <DocumentationFile></DocumentationFile>
+       <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+       <UserSecretsId>2fb3d699-e372-487e-85c6-d781ef5c58a0</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="4.5.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\..\IPLookup.API.Services\IPLookup.API.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

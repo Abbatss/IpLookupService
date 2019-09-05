@@ -1,0 +1,11 @@
+**/node_modules
+**/obj/*
+**/bin/*
+**/*.exe
+**/*.zip
+**/test?/
+
+**/_files/*
+.git
+.vs
+*/.vs
