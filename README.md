@@ -10,5 +10,9 @@ open cmd on root folder
 
 python -m pytest
 
-GeoDataBaseLoadPerformanceTests - test for load DB in memory. It will fail if load time > 30 ms
+GeoDataBaseLoadPerformanceTests - test for load DB in memory. It will fail if load time > 30 
+
+To run unit test for SPA Web site :
+
+./src/SPAWeb/GeoInformationSPA/ClientApp > ng test
 
