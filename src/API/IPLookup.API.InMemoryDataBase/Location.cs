@@ -27,11 +27,13 @@ namespace IPLookup.API.InMemoryDataBase
         }
         private LocationInfo(byte[] dataBase, uint offset, int index)
         {
+
             if (dataBase is null)
             {
                 throw new ArgumentNullException(nameof(dataBase));
             }
             var startIndex = (int)(offset + (LOCATION_ROW_SIZE) * index);
+            ReadOnlySpan<byte> b = new ReadOnlySpan<byte>(dataBase, startIndex, LOCATION_ROW_SIZE);
             if (dataBase.Length < startIndex + LOCATION_ROW_SIZE)
                 throw new InvalidOperationException("Can't read Location index Row. Not enough data in DataBase.");
             ParseRowData(dataBase, startIndex);
@@ -40,7 +42,7 @@ namespace IPLookup.API.InMemoryDataBase
         {
             if (LocationInfoIndex >= new GeoBaseHeader(dataBase).OffsetLocations)
             {
-                //for some reason index is not correct.
+                // index points to City name.
                 return new LocationInfo(dataBase, LocationInfoIndex - CITY_NAME_OFFSET, 0);
             }
             return null;
@@ -85,19 +87,6 @@ namespace IPLookup.API.InMemoryDataBase
 
             Latitude = BitConverter.ToSingle(db, startIndex + 88);
             Longitude = BitConverter.ToSingle(db, startIndex + 92);
-            CityBytes = new sbyte[20];
-            using (var stream = new MemoryStream(db))
-            {
-                stream.Position = startIndex + 32 + 4;
-                using (BinaryReader br = new BinaryReader(stream))
-                {
-                    for (int i = 4; i < 24; i++)
-                    {
-                        CityBytes[i - 4] = br.ReadSByte();
-                    }
-                }
-            }
-
         }
     }
 }
