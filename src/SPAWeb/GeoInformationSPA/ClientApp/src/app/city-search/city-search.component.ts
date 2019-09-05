@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { LocationModel } from '../Models/LocationModel';
 @Component({
   selector: 'app-city-search',
   templateUrl: './city-search.component.html',
@@ -12,7 +12,8 @@ import { BehaviorSubject } from 'rxjs';
 
 })
 export class CitySearchComponent {
-  private locations : LocationModel[];
+  locations : LocationModel[];
+  city:string;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private location: Location, private router: Router, private route: ActivatedRoute) {
 
   
@@ -21,20 +22,11 @@ export class CitySearchComponent {
   
   }
 
-  public refreshData(ip:string) {
-    this.http.get<LocationModel[]>(this.baseUrl + 'api/api/location?city='+ip, { observe: 'response' }).subscribe(result => {
-      this.locations = result.body;
+  public searchByCity() {
+    var url = this.baseUrl + '/ip/locations?city='+ this.city;
+    this.http.get<LocationModel[]>(url, { observe: 'response' }).subscribe((result) => {
+      this.locations = result.body ;
     }, error => console.error(error));
 
   }
-}
-
-
-interface LocationModel {
-  id: number;
-  name: string;
-  priority: number;
-  added: string;
-  timeToComplete: number;
-  actions: string;
 }

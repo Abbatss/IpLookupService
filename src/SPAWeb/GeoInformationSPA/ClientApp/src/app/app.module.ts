@@ -10,6 +10,7 @@ import { IpSearchComponent } from './ip-search/ip-search.component';
 import { CitySearchComponent } from './city-search/city-search.component';
 import {NgxMaskModule, IConfig} from 'ngx-mask'
 import {APP_BASE_HREF} from '@angular/common';
+import { LocationDetailsComponent } from './location-details/location-details.component';
 
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -18,7 +19,8 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     AppComponent,
     NavMenuComponent,
     IpSearchComponent,
-    CitySearchComponent
+    CitySearchComponent,
+    LocationDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

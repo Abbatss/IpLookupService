@@ -4,19 +4,7 @@
 <button (click)="searchByIp()">Search</button>
 </span>
 <div *ngIf="geoInfo">
-    Location Details: 
+        <app-location-details [geoInfo]='geoInfo'></app-location-details>
 <br/>
-<span> Country : {{geoInfo.Country}} </span>
-<br/>
-<span > Region : {{geoInfo.Region}} </span>
-<br/>
-<span > Postal : {{geoInfo.Postal}} </span>
-<br/>
-<span > City : {{geoInfo.City}} </span>
-<br/>
-<span > Organization : {{geoInfo.Organization}} </span>
-<br/>
-<span > Latitude : {{geoInfo.Latitude}} </span>
-<br/>
-<span > Longitude : {{geoInfo.Longitude}} </span>
+
 </div>

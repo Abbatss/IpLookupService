@@ -1,1 +1,10 @@
-<h1>city-search</h1>
+<h1></h1>
+<span>City Name:
+<input  type='text' maxlength="24"  [(ngModel)]="city"/>
+<button (click)="searchByCity()">Search</button>
+</span>
+<br> 
+<ul *ngIf="locations"><li *ngFor="let item of locations">
+        <app-location-details [geoInfo]='item'></app-location-details>
+</li>
+</ul>
