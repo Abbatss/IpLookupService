@@ -8,7 +8,7 @@ namespace IPLookup.API.InMemoryDataBase
     public class LocationInfo
     {
         private const int LOCATION_ROW_SIZE = 96;
-        public const int INDEX_OFFSET = 36;
+        public const int CITY_NAME_OFFSET = 36;
 
         public string Country { get; private set; }
         public string Region { get; private set; }
@@ -41,7 +41,7 @@ namespace IPLookup.API.InMemoryDataBase
             if (LocationInfoIndex >= new GeoBaseHeader(dataBase).OffsetLocations)
             {
                 //for some reason index is not correct.
-                return new LocationInfo(dataBase, LocationInfoIndex - INDEX_OFFSET, 0);
+                return new LocationInfo(dataBase, LocationInfoIndex - CITY_NAME_OFFSET, 0);
             }
             return null;
         }

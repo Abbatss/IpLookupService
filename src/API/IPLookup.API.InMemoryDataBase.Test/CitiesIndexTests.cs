@@ -15,7 +15,7 @@ namespace IPLookup.API.Host.Tests
         {
             var locationInfoIndex = 64u;
             var actual = GetCitiesIndex(locationInfoIndex, "city");
-            Assert.AreEqual(locationInfoIndex + LocationInfo.INDEX_OFFSET, actual.LocationInfoIndex);
+            Assert.AreEqual(locationInfoIndex + LocationInfo.CITY_NAME_OFFSET, actual.LocationInfoIndex);
             Assert.IsNotNull(actual.Location);
         }
 
@@ -23,7 +23,7 @@ namespace IPLookup.API.Host.Tests
         {
             var db = new byte[160];
             BitConverter.GetBytes(60u).CopyTo(db, 52);
-            BitConverter.GetBytes(locationInfoIndex + LocationInfo.INDEX_OFFSET).CopyTo(db, 60);
+            BitConverter.GetBytes(locationInfoIndex + LocationInfo.CITY_NAME_OFFSET).CopyTo(db, 60);
             var cityBytes = System.Text.UTF8Encoding.UTF8.GetBytes(city);
             cityBytes.CopyTo(db, 60 + 4 + 32);
             return new CitiesIndex(db, 0);
