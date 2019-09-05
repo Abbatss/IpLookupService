@@ -104,15 +104,18 @@ namespace IPLookup.API.Host.Tests
         [TestMethod]
         public async Task ScanCitiesIndex_Test()
         {
-            var expected = await _client.Get<CitiesIndex>(10);
-            var res = await _client.Scan<CitiesIndex>(expected.Location.City);
-            Assert.AreEqual(expected, res);
+            var cityName = "cit_Ijid";
+            var res = await _client.Scan<CitiesIndex>(cityName);
+            Assert.AreEqual(cityName, res[0].Location.City);
         }
+
+
         [TestMethod]
         public async Task ScanCitiesIndex_NotFound_Test()
         {
             var res = await _client.Scan<CitiesIndex>("42424242");
-            Assert.IsNull(res);
+
+            Assert.AreEqual(0, res.Count);
         }
     }
 }

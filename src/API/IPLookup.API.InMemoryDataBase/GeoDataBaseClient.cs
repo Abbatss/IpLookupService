@@ -74,17 +74,18 @@ namespace IPLookup.API.InMemoryDataBase
             return Task.FromResult(Factory.CreateInstance<T>(DataBase, index));
         }
 
-        public Task<T> Scan<T>(string value) where T : class, IByValueBinarySearchObject
+        public Task<List<T>> Scan<T>(string value) where T : class, IByValueBinarySearchObject
         {
+            var list = new List<T>();
             for (int i = 0; i < header.Value.Records; i++)
             {
                 var item = Factory.CreateInstance<T>(DataBase, i);
                 if (item.ContainsValue(value))
                 {
-                    return Task.FromResult<T>(item);
+                    list.Add(item);
                 }
             }
-            return Task.FromResult<T>(null);
+            return Task.FromResult(list);
         }
     }
 }

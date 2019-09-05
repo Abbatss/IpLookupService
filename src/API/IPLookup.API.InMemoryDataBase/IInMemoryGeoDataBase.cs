@@ -8,6 +8,6 @@ namespace IPLookup.API.InMemoryDataBase
         Task<T> SearchFirstItemByValue<T>(string value) where T : class, IByValueBinarySearchObject;
         Task<List<T>> GetItems<T>(int start, int count) where T : class, IByValueBinarySearchObject;
         Task<T> Get<T>(int index) where T : class;
-        Task<T> Scan<T>(string value) where T : class, IByValueBinarySearchObject;
+        Task<List<T>> Scan<T>(string value) where T : class, IByValueBinarySearchObject;
     }
 }

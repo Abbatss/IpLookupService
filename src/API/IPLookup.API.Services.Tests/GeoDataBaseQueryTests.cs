@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
@@ -57,8 +58,7 @@ namespace IPLookup.API.Services.Tests
             var citiesIndex2 = new CitiesIndex(DataBase, 1);
             var cityToSearch = citiesIndex.Location.City;
 
-            clientMoq.Setup(p => p.SearchFirstItemByValue<CitiesIndex>(cityToSearch)).Returns(Task.FromResult(citiesIndex));
-            clientMoq.Setup(p => p.Get<CitiesIndex>((int)citiesIndex2.ItemIndex)).Returns(Task.FromResult(citiesIndex2));
+            clientMoq.Setup(p => p.Scan<CitiesIndex>(cityToSearch)).Returns(Task.FromResult(new List<CitiesIndex>() { citiesIndex }));
             var query = new GeoDataBaseQuery(clientMoq.Object);
             var res = await query.GetLocationsByCity(cityToSearch);
             CompareLocationToLocationModel(citiesIndex.Location, res[0]);
