@@ -25,25 +25,25 @@ namespace IPLookup.API.InMemoryDataBase
         }
         public bool ContainsValue(string value)
         {
-            return value.TrimEnd('\0') == Location?.City?.TrimEnd('\0');
+            return value?.TrimEnd('\0') == Location?.City;
         }
 
         public bool LessThan(string value)
         {
-            var valueChars = value.ToCharArray();
+            var valueChars = value?.ToCharArray();
             if (string.IsNullOrEmpty(Location?.City))
             {
                 return true;
             }
-            for (int i = 0; i < valueChars.Length && i < Location?.City?.Length; i++)
+            for (int i = 0; i < valueChars?.Length && i < Location?.City?.Length; i++)
             {
-                if (Location.City[0] == valueChars[0])
+                if (Location.City[i] == valueChars[i])
                 {
                     continue;
                 }
-                return Location.City[0] < valueChars[0];
+                return Location.City[i] < valueChars[i];
             }
-            return Location?.City?.Length < valueChars.Length;
+            return Location?.City?.Length < valueChars?.Length;
         }
 
         public override bool Equals(object obj)

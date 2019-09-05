@@ -8,6 +8,8 @@ namespace IPLookup.API.InMemoryDataBase
     public class LocationInfo
     {
         private const int LOCATION_ROW_SIZE = 96;
+        public const int INDEX_OFFSET = 36;
+
         public string Country { get; private set; }
         public string Region { get; private set; }
         public string Postal { get; private set; }
@@ -38,7 +40,8 @@ namespace IPLookup.API.InMemoryDataBase
         {
             if (LocationInfoIndex >= new GeoBaseHeader(dataBase).OffsetLocations)
             {
-                return new LocationInfo(dataBase, LocationInfoIndex - 36, 0);
+                //for some reason index is not correct.
+                return new LocationInfo(dataBase, LocationInfoIndex - INDEX_OFFSET, 0);
             }
             return null;
         }
@@ -74,11 +77,11 @@ namespace IPLookup.API.InMemoryDataBase
         }
         private void ParseRowData(byte[] db, int startIndex)
         {
-            Country = db.ConvertToString(startIndex, 8);
-            Region = db.ConvertToString(startIndex + 8, 12);
-            Postal = db.ConvertToString(startIndex + 20, 12);
-            City = db.ConvertToString(startIndex + 32, 24);
-            Organization = db.ConvertToString(startIndex + 56, 32);
+            Country = db.ConvertToString(startIndex, 8).TrimEnd('\0');
+            Region = db.ConvertToString(startIndex + 8, 12).TrimEnd('\0');
+            Postal = db.ConvertToString(startIndex + 20, 12).TrimEnd('\0');
+            City = db.ConvertToString(startIndex + 32, 24).TrimEnd('\0');
+            Organization = db.ConvertToString(startIndex + 56, 32).TrimEnd('\0');
 
             Latitude = BitConverter.ToSingle(db, startIndex + 88);
             Longitude = BitConverter.ToSingle(db, startIndex + 92);
