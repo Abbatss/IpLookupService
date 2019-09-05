@@ -9,13 +9,17 @@ namespace IPLookup.API.InMemoryDataBase
     {
         private const int LOCATION_ROW_SIZE = 96;
         public const int CITY_NAME_OFFSET = 36;
+        private const int COUNTRY_SIZE = 8;
+        private const int REGION_SIZE = 12;
+        private const int POSTAL_SIZE = 12;
+        private const int CITY_SIZE = 24;
+        private const int ORGANIZATION_SIZE = 32;
 
         public string Country { get; private set; }
         public string Region { get; private set; }
         public string Postal { get; private set; }
         public string City { get; private set; }
 
-        public sbyte[] CityBytes { get; set; }
         public string Organization { get; private set; }
 
         public float Latitude { get; private set; }
@@ -33,7 +37,6 @@ namespace IPLookup.API.InMemoryDataBase
                 throw new ArgumentNullException(nameof(dataBase));
             }
             var startIndex = (int)(offset + (LOCATION_ROW_SIZE) * index);
-            ReadOnlySpan<byte> b = new ReadOnlySpan<byte>(dataBase, startIndex, LOCATION_ROW_SIZE);
             if (dataBase.Length < startIndex + LOCATION_ROW_SIZE)
                 throw new InvalidOperationException("Can't read Location index Row. Not enough data in DataBase.");
             ParseRowData(dataBase, startIndex);
@@ -79,14 +82,18 @@ namespace IPLookup.API.InMemoryDataBase
         }
         private void ParseRowData(byte[] db, int startIndex)
         {
-            Country = db.ConvertToString(startIndex, 8).TrimEnd('\0');
-            Region = db.ConvertToString(startIndex + 8, 12).TrimEnd('\0');
-            Postal = db.ConvertToString(startIndex + 20, 12).TrimEnd('\0');
-            City = db.ConvertToString(startIndex + 32, 24).TrimEnd('\0');
-            Organization = db.ConvertToString(startIndex + 56, 32).TrimEnd('\0');
+            Country = db.ConvertToString(startIndex, COUNTRY_SIZE).TrimEnd('\0');
+            var regionIndex = startIndex + COUNTRY_SIZE;
+            Region = db.ConvertToString(regionIndex, REGION_SIZE).TrimEnd('\0');
+            var postalIndex = regionIndex + REGION_SIZE;
+            Postal = db.ConvertToString(postalIndex, POSTAL_SIZE).TrimEnd('\0');
+            var cityIndex = postalIndex + POSTAL_SIZE;
+            City = db.ConvertToString(cityIndex, CITY_SIZE).TrimEnd('\0');
+            var organizationIndex = cityIndex + CITY_SIZE;
+            Organization = db.ConvertToString(organizationIndex, ORGANIZATION_SIZE).TrimEnd('\0');
 
-            Latitude = BitConverter.ToSingle(db, startIndex + 88);
-            Longitude = BitConverter.ToSingle(db, startIndex + 92);
+            Latitude = BitConverter.ToSingle(db, organizationIndex + 4);
+            Longitude = BitConverter.ToSingle(db, organizationIndex + 8);
         }
     }
 }
