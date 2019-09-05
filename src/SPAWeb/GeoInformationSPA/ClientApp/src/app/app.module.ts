@@ -12,7 +12,10 @@ import {NgxMaskModule, IConfig} from 'ngx-mask'
 import {APP_BASE_HREF} from '@angular/common';
 import {CacheRouteReuseStrategy} from './router-strategy';
 import { LocationDetailsComponent } from './location-details/location-details.component';
-
+import {
+  LocationsAbstractService,
+  LocationsService
+} from './services/locations.service';
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
@@ -37,7 +40,8 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' },
   {provide: 'BASE_URL', useValue : 'https://localhost:44365/api'},
-  {provide: RouteReuseStrategy, useClass: CacheRouteReuseStrategy}
+  {provide: RouteReuseStrategy, useClass: CacheRouteReuseStrategy},
+  { provide: LocationsAbstractService, useClass: LocationsService },
 ],
   bootstrap: [AppComponent]
 })
