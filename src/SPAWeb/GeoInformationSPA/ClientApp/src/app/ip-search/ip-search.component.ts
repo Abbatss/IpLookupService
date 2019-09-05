@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { LocationModel } from '../Models/LocationModel';
 import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-ip-search',
@@ -11,8 +12,8 @@ import { ViewEncapsulation } from '@angular/core';
 
 })
 export class IpSearchComponent {
-  geoInfo : ILocationModel;
-  selectedIp:string;
+  geoInfo : LocationModel;
+  public selectedIp:string;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private location: Location, private router: Router, private route: ActivatedRoute) {
   }
   ngOnInit() {
@@ -20,8 +21,9 @@ export class IpSearchComponent {
   }
 
   public searchByIp() {
-    this.http.get<ILocationModel>(this.baseUrl + 'api/api/location?ip='+this.selectedIp, { observe: 'response' }).subscribe(result => {
-      this.geoInfo = result;
+    var url = this.baseUrl + '/ip/location?ip='+ this.selectedIp;
+    this.http.get<LocationModel>(url, { observe: 'response' }).subscribe((result) => {
+      this.geoInfo = result.body ;
     }, error => console.error(error));
 
   }

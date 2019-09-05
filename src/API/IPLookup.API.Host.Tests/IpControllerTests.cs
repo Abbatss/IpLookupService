@@ -36,6 +36,21 @@ namespace IPLookup.API.Host.Tests
             Assert.AreEqual(locationsList[0], res.Content); ;
 
         }
+
+        [TestMethod]
+        public async Task GetLocation_InvalidIpTest()
+        {
+            var controller = new IpController(queryMoq.Object);
+            var res = await controller.GetLocation("123.12");
+            Assert.IsNull(res.Content);
+            res = await controller.GetLocation("aa.12.12.12");
+            Assert.IsNull(res.Content);
+            res = await controller.GetLocation("777.12.12.12");
+            Assert.IsNull(res.Content);
+        }
+
+
+
         [TestMethod]
         public async Task GetLocationsTest()
         {

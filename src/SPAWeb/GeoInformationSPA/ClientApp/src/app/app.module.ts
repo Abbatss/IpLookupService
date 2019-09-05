@@ -32,7 +32,9 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
       { path: 'citysearch', component: CitySearchComponent }
     ])
   ],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' },
+  {provide: 'BASE_URL', useValue : 'https://localhost:44365/api'}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

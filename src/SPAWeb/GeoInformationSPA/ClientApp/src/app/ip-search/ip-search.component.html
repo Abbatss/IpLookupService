@@ -1,6 +1,6 @@
 <h1></h1>
 <span>Ip:
-<input mask="IP"  value="selectedIp"/>
+<input type='text' mask="IP" [dropSpecialCharacters]="false"  [(ngModel)]="selectedIp"/>
 <button (click)="searchByIp()">Search</button>
 </span>
 <div *ngIf="geoInfo">
@@ -10,9 +10,9 @@
 <br/>
 <span > Region : {{geoInfo.Region}} </span>
 <br/>
-<span > Postal : {{geoInfo.Region}} </span>
+<span > Postal : {{geoInfo.Postal}} </span>
 <br/>
-<span > City : {{geoInfo.Region}} </span>
+<span > City : {{geoInfo.City}} </span>
 <br/>
 <span > Organization : {{geoInfo.Organization}} </span>
 <br/>

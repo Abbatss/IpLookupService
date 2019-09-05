@@ -19,7 +19,6 @@ namespace Common
             {
                 throw new InvalidOperationException("ipString has wrong format when convert to ip");
             }
-            var ip = new byte[0];
             if (byte.TryParse(ipBytes[0], out var firstByte)
                 && byte.TryParse(ipBytes[1], out var secondByte)
                 && byte.TryParse(ipBytes[2], out var thirdByte)
@@ -29,6 +28,19 @@ namespace Common
                 return BitConverter.ToUInt32(new byte[] { firstByte, secondByte, thirdByte, fouthByte }, 0);
             }
             throw new InvalidOperationException("ipString has wrong format when convert to ip");
+        }
+        public static bool IsValidIp(this string ipString)
+        {
+
+            var ipBytes = ipString.Split('.');
+            if (ipBytes.Length != 4)
+            {
+                return false;
+            }
+            return byte.TryParse(ipBytes[0], out var firstByte)
+                || byte.TryParse(ipBytes[1], out var secondByte)
+                || byte.TryParse(ipBytes[2], out var thirdByte)
+                || byte.TryParse(ipBytes[3], out var fouthByte);
         }
     }
 }
