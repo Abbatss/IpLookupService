@@ -10,3 +10,5 @@ open cmd on root folder
 
 python -m pytest
 
+GeoDataBaseLoadPerformanceTests - test for load DB in memory. It will fail if load time > 30 ms
+
