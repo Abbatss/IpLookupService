@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 
 })
 export class IpSearchComponent {
-  geoInfo : LocationModel;
+  geoInfo : ILocationModel;
   selectedIp:string;
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private location: Location, private router: Router, private route: ActivatedRoute) {
 
@@ -23,30 +23,12 @@ export class IpSearchComponent {
   }
 
   public searchByIp() {
-    this.geoInfo =  new LocationModel();
       this.geoInfo.City="Moskow";
-    this.http.get<LocationModel>(this.baseUrl + 'api/api/location?ip='+this.selectedIp, { observe: 'response' }).subscribe(result => {
-      
+    this.http.get<ILocationModel>(this.baseUrl + 'api/api/location?ip='+this.selectedIp, { observe: 'response' }).subscribe(result => {
+      this.geoInfo = result;
     }, error => console.error(error));
 
   }
 }
 
-class LocationModel implements ILocationModel
-{
-  City: string;
-  name: string;
-  priority: number;
-  added: string;
-  timeToComplete: number;
-  actions: string;
-}
 
-interface ILocationModel {
-  City: string;
-  name: string;
-  priority: number;
-  added: string;
-  timeToComplete: number;
-  actions: string;
-}

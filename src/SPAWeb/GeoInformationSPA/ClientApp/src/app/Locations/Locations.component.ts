@@ -5,9 +5,9 @@ import { Location } from '@angular/common';
 import { ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 @Component({
-  selector: 'app-ip-search',
-  templateUrl: './ip-search.component.html',
-  styleUrls: ['/ip-search.component.css'],
+  selector: 'app-locations',
+  templateUrl: './locations.component.html',
+  styleUrls: ['/locations.component.css'],
   encapsulation: ViewEncapsulation.None,
 
 })

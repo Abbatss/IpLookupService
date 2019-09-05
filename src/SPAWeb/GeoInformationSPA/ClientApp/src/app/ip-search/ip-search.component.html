@@ -3,5 +3,20 @@
 <input mask="IP"  value="selectedIp"/>
 <button (click)="searchByIp()">Search</button>
 </span>
-<p></p>
-<span *ngIf="geoInfo"> City : {{geoInfo.City}} </span>
+<div *ngIf="geoInfo">
+    Location Details: 
+<br/>
+<span> Country : {{geoInfo.Country}} </span>
+<br/>
+<span > Region : {{geoInfo.Region}} </span>
+<br/>
+<span > Postal : {{geoInfo.Region}} </span>
+<br/>
+<span > City : {{geoInfo.Region}} </span>
+<br/>
+<span > Organization : {{geoInfo.Organization}} </span>
+<br/>
+<span > Latitude : {{geoInfo.Latitude}} </span>
+<br/>
+<span > Longitude : {{geoInfo.Longitude}} </span>
+</div>
