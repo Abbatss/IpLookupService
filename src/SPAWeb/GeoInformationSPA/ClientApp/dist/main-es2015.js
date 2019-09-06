@@ -1,5 +1,18 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app-settings/app-settings.component.html":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app-settings/app-settings.component.html ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<p>link to api can me specified here. this tab is emporary and nessesary until CI/CD process fully configured.</p>\n\n<span>API Base url:\n    <input  type='text' [(ngModel)]=\"baseUrl\" />\n    <button (click)=\"setUrl()\">Save</button>\n\n    </span>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
 /*!**************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
@@ -48,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\n<span> Country : {{geoInfo.Country}} </span>\n<br/>\n<span > Region : {{geoInfo.Region}} </span>\n<br/>\n<span > Postal : {{geoInfo.Postal}} </span>\n<br/>\n<span > City : {{geoInfo.City}} </span>\n<br/>\n<span > Organization : {{geoInfo.Organization}} </span>\n<br/>\n<span > Latitude : {{geoInfo.Latitude}} </span>\n<br/>\n<span > Longitude : {{geoInfo.Longitude}} </span>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n<span> Country : {{geoInfo.Country}} </span>\r\n<br/>\r\n<span > Region : {{geoInfo.Region}} </span>\r\n<br/>\r\n<span > Postal : {{geoInfo.Postal}} </span>\r\n<br/>\r\n<span > City : {{geoInfo.City}} </span>\r\n<br/>\r\n<span > Organization : {{geoInfo.Organization}} </span>\r\n<br/>\r\n<span > Latitude : {{geoInfo.Latitude}} </span>\r\n<br/>\r\n<span > Longitude : {{geoInfo.Longitude}} </span>\r\n</div>");
 
 /***/ }),
 
@@ -61,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]='[\"/\"]'>Locations Lookup</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse' [ngClass]='{ \"in\": isExpanded }'>\r\n          <ul class='nav navbar-nav'>\r\n          \r\n            <li [routerLinkActive]='[\"link-active\"]'>\r\n              <a [routerLink]='[\"/ipsearch\"]' (click)='collapse()'>\r\n                <span class='glyphicon glyphicon-th-list'></span> Search By Ip\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]='[\"link-active\"]'>\r\n              <a [routerLink]='[\"/citysearch\"]' (click)='collapse()'>\r\n                <span class='glyphicon glyphicon-th-list'></span> Search By City\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]='[\"/\"]'>Locations Lookup</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse' [ngClass]='{ \"in\": isExpanded }'>\r\n          <ul class='nav navbar-nav'>\r\n          \r\n            <li [routerLinkActive]='[\"link-active\"]'>\r\n              <a [routerLink]='[\"/ipsearch\"]' (click)='collapse()'>\r\n                <span class='glyphicon glyphicon-th-list'></span> Search By Ip\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]='[\"link-active\"]'>\r\n              <a [routerLink]='[\"/citysearch\"]' (click)='collapse()'>\r\n                <span class='glyphicon glyphicon-th-list'></span> Search By City\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]='[\"link-active\"]'>\r\n              <a [routerLink]='[\"/settings\"]' (click)='collapse()'>\r\n                <span class='glyphicon glyphicon-th-list'></span> Settings\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -335,6 +348,56 @@ class LocationModel {
 
 /***/ }),
 
+/***/ "./src/app/app-settings/app-settings.component.css":
+/*!*********************************************************!*\
+  !*** ./src/app/app-settings/app-settings.component.css ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("input\r\n{\r\n    width: 400px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLXNldHRpbmdzL2FwcC1zZXR0aW5ncy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztJQUVJLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9hcHAtc2V0dGluZ3MvYXBwLXNldHRpbmdzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbnB1dFxyXG57XHJcbiAgICB3aWR0aDogNDAwcHg7XHJcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/app-settings/app-settings.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/app-settings/app-settings.component.ts ***!
+  \********************************************************/
+/*! exports provided: AppSettingsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppSettingsComponent", function() { return AppSettingsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../app.config */ "./src/app/app.config.ts");
+
+
+
+let AppSettingsComponent = class AppSettingsComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+    setUrl() {
+        _app_config__WEBPACK_IMPORTED_MODULE_2__["AppConfig"].settings.apiUrl = this.baseUrl;
+    }
+};
+AppSettingsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-app-settings',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app-settings.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app-settings/app-settings.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app-settings.component.css */ "./src/app/app-settings/app-settings.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], AppSettingsComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /*!***********************************!*\
   !*** ./src/app/app.component.css ***!
@@ -379,16 +442,68 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/app.config.ts":
+/*!*******************************!*\
+  !*** ./src/app/app.config.ts ***!
+  \*******************************/
+/*! exports provided: AppConfig, AppConfigSettngs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppConfig", function() { return AppConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppConfigSettngs", function() { return AppConfigSettngs; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+var AppConfig_1;
+
+
+
+let AppConfig = AppConfig_1 = class AppConfig {
+    constructor(http) {
+        this.http = http;
+    }
+    load() {
+        const jsonFile = 'clientapp/dist/assets/config/config.json';
+        return new Promise((resolve, reject) => {
+            this.http.get(jsonFile).toPromise().then((response) => {
+                AppConfig_1.settings = response;
+                resolve();
+            }).catch((response) => {
+                resolve();
+                AppConfig_1.settings = new AppConfigSettngs();
+            });
+        });
+    }
+};
+AppConfig.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+AppConfig = AppConfig_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+], AppConfig);
+
+class AppConfigSettngs {
+}
+
+
+/***/ }),
+
 /***/ "./src/app/app.module.ts":
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: options, AppModule */
+/*! exports provided: options, initializeApp, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeApp", function() { return initializeApp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
@@ -405,6 +520,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router_strategy__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./router-strategy */ "./src/app/router-strategy.ts");
 /* harmony import */ var _location_details_location_details_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./location-details/location-details.component */ "./src/app/location-details/location-details.component.ts");
 /* harmony import */ var _services_locations_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/locations.service */ "./src/app/services/locations.service.ts");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.config */ "./src/app/app.config.ts");
+/* harmony import */ var _app_settings_app_settings_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-settings/app-settings.component */ "./src/app/app-settings/app-settings.component.ts");
+
+
 
 
 
@@ -421,6 +540,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const options = null;
+function initializeApp(appConfig) {
+    return () => appConfig.load();
+}
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -430,7 +552,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_7__["NavMenuComponent"],
             _ip_search_ip_search_component__WEBPACK_IMPORTED_MODULE_8__["IpSearchComponent"],
             _city_search_city_search_component__WEBPACK_IMPORTED_MODULE_9__["CitySearchComponent"],
-            _location_details_location_details_component__WEBPACK_IMPORTED_MODULE_13__["LocationDetailsComponent"]
+            _location_details_location_details_component__WEBPACK_IMPORTED_MODULE_13__["LocationDetailsComponent"],
+            _app_settings_app_settings_component__WEBPACK_IMPORTED_MODULE_16__["AppSettingsComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -440,10 +563,14 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot([
                 { path: '', component: _ip_search_ip_search_component__WEBPACK_IMPORTED_MODULE_8__["IpSearchComponent"], pathMatch: 'full' },
                 { path: 'ipsearch', component: _ip_search_ip_search_component__WEBPACK_IMPORTED_MODULE_8__["IpSearchComponent"] },
-                { path: 'citysearch', component: _city_search_city_search_component__WEBPACK_IMPORTED_MODULE_9__["CitySearchComponent"] }
+                { path: 'citysearch', component: _city_search_city_search_component__WEBPACK_IMPORTED_MODULE_9__["CitySearchComponent"] },
+                { path: 'settings', component: _app_settings_app_settings_component__WEBPACK_IMPORTED_MODULE_16__["AppSettingsComponent"] }
             ])
         ],
-        providers: [{ provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["APP_BASE_HREF"], useValue: '/' },
+        providers: [
+            _app_config__WEBPACK_IMPORTED_MODULE_15__["AppConfig"],
+            { provide: _angular_core__WEBPACK_IMPORTED_MODULE_2__["APP_INITIALIZER"], useFactory: initializeApp, deps: [_app_config__WEBPACK_IMPORTED_MODULE_15__["AppConfig"]], multi: true },
+            { provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["APP_BASE_HREF"], useValue: '/' },
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouteReuseStrategy"], useClass: _router_strategy__WEBPACK_IMPORTED_MODULE_12__["CacheRouteReuseStrategy"] },
             { provide: _services_locations_service__WEBPACK_IMPORTED_MODULE_14__["LocationsAbstractService"], useClass: _services_locations_service__WEBPACK_IMPORTED_MODULE_14__["LocationsService"] },
         ],
@@ -727,6 +854,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../app.config */ "./src/app/app.config.ts");
+
 
 
 
@@ -740,14 +869,14 @@ let LocationsService = class LocationsService {
     getLocationByIp(ip) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
-            var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl + '/ip/location?ip=' + ip;
+            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiUrl + '/ip/location?ip=' + ip;
             const res = yield this.http.get(url, { observe: 'response' }).toPromise();
             return res.body;
         });
     }
     getLocationsByCity(city) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            var url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl + '/ip/locations?city=' + city;
+            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiUrl + '/ip/locations?city=' + city;
             const res = yield this.http.get(url, { observe: 'response' }).toPromise();
             return res.body;
         });
@@ -833,7 +962,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\MyProjects\LocationService\src\SPAWeb\GeoInformationSPA\ClientApp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Work\csharp\LocationSearch\src\SPAWeb\GeoInformationSPA\ClientApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })

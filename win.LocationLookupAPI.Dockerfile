@@ -1,7 +1,18 @@
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat 
+# The `FROM` instruction specifies the base image. You are
+# extending the `microsoft/aspnet` image.
 
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.7.2-windowsservercore-1803
-ARG source
-WORKDIR /inetpub/wwwroot
-COPY ${source:-obj/Docker/publish} ./src/API/IPLookup.API.Host/
+FROM microsoft/aspnet
+
+# Next, this Dockerfile creates a directory for your application
+RUN mkdir C:\app
+
+# configure the new site in IIS.
+RUN powershell -NoProfile -Command \
+    Import-module IISAdministration; \
+    New-IISSite -Name "ASPNET" -PhysicalPath C:\app -BindingInformation "*:8001:"
+
+# This instruction tells the container to listen on port 8000. 
+EXPOSE 8001
+
+# The final instruction copies the site you published earlier into the container.
+ADD . /app

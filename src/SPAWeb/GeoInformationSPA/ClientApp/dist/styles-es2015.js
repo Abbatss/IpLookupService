@@ -376,8 +376,8 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\MyProjects\LocationService\src\SPAWeb\GeoInformationSPA\ClientApp\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! D:\MyProjects\LocationService\src\SPAWeb\GeoInformationSPA\ClientApp\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! C:\Work\csharp\LocationSearch\src\SPAWeb\GeoInformationSPA\ClientApp\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Work\csharp\LocationSearch\src\SPAWeb\GeoInformationSPA\ClientApp\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
 
 
 /***/ })
