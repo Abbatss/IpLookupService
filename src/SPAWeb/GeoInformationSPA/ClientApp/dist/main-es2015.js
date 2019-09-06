@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>link to api can me specified here. this tab is emporary and nessesary until CI/CD process fully configured.</p>\n\n<span>API Base url:\n    <input  type='text' [(ngModel)]=\"baseUrl\" />\n    <button (click)=\"setUrl()\">Save</button>\n\n    </span>");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>this tab is temporary and necessary until CI/CD process fully configured.</p>\n\n<span>API Base url:\n    <input  type='text' [(ngModel)]=\"baseUrl\" />\n    <button (click)=\"setUrl()\">Save</button>\n\n    </span>");
 
 /***/ }),
 
@@ -380,9 +380,10 @@ __webpack_require__.r(__webpack_exports__);
 let AppSettingsComponent = class AppSettingsComponent {
     constructor() { }
     ngOnInit() {
+        this.baseUrl = _app_config__WEBPACK_IMPORTED_MODULE_2__["AppConfig"].settings.apiBaseUrl;
     }
     setUrl() {
-        _app_config__WEBPACK_IMPORTED_MODULE_2__["AppConfig"].settings.apiUrl = this.baseUrl;
+        _app_config__WEBPACK_IMPORTED_MODULE_2__["AppConfig"].settings.apiBaseUrl = this.baseUrl;
     }
 };
 AppSettingsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -465,7 +466,7 @@ let AppConfig = AppConfig_1 = class AppConfig {
         this.http = http;
     }
     load() {
-        const jsonFile = 'clientapp/dist/assets/config/config.json';
+        const jsonFile = 'clientapp/dist/assets/config.json';
         return new Promise((resolve, reject) => {
             this.http.get(jsonFile).toPromise().then((response) => {
                 AppConfig_1.settings = response;
@@ -869,14 +870,14 @@ let LocationsService = class LocationsService {
     getLocationByIp(ip) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
-            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiUrl + '/ip/location?ip=' + ip;
+            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiBaseUrl + '/ip/location?ip=' + ip;
             const res = yield this.http.get(url, { observe: 'response' }).toPromise();
             return res.body;
         });
     }
     getLocationsByCity(city) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiUrl + '/ip/locations?city=' + city;
+            var url = _app_config__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].settings.apiBaseUrl + '/ip/locations?city=' + city;
             const res = yield this.http.get(url, { observe: 'response' }).toPromise();
             return res.body;
         });

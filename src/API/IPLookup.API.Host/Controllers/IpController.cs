@@ -12,7 +12,6 @@ using System.Web.Http.Results;
 using Common;
 namespace IPLookup.API.Host.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class IpController : ApiController
     {
         private readonly IGeoDataBaseQuery _query;

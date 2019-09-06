@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface IAppConfig {
-  apiUrl: string;
+  apiBaseUrl: string;
 }
 
 @Injectable({
@@ -12,10 +12,10 @@ export class AppConfig {
   static settings: IAppConfig;
   constructor(private http: HttpClient) { }
   load() {
-    const jsonFile = 'clientapp/dist/assets/config/config.json';
+    const jsonFile = 'clientapp/dist/assets/config.json';
     return new Promise<void>((resolve, reject) => {
       this.http.get(jsonFile).toPromise().then((response: IAppConfig) => {
-        AppConfig.settings = response as IAppConfig;
+        AppConfig.settings = response as AppConfigSettngs;
         resolve();
       }).catch((response: any) => {
         resolve();
@@ -26,7 +26,7 @@ export class AppConfig {
 }
 export class AppConfigSettngs implements IAppConfig
 {
-  apiUrl: string;
+  public apiBaseUrl: string;
   
 }
 

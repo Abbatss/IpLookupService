@@ -12,10 +12,11 @@ export class AppSettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.baseUrl = AppConfig.settings.apiBaseUrl
   }
   public setUrl()
   {
-    AppConfig.settings.apiUrl = this.baseUrl;
+    AppConfig.settings.apiBaseUrl = this.baseUrl;
   }
 
 }
