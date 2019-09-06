@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IPLookup.API.Host.Tests
+namespace IPLookup.API.InMemoryDataBase.Test
 {
     [TestClass]
     public class IPRangeTests

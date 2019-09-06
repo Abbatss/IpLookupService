@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 using IPLookup.API.InMemoryDataBase;
 using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
-namespace IPLookup.API.Host.Tests
+namespace IPLookup.API.InMemoryDataBase.Test
 {
     [TestClass]
     public class GeoDataBaseClientTests
     {
+        public TestContext TestContext
+        {
+            get;
+            set;
+        }
         private readonly GeoDataBaseClient _client;
         private readonly GeoBaseHeader _header;
         public GeoDataBaseClientTests()
@@ -101,6 +107,51 @@ namespace IPLookup.API.Host.Tests
             Assert.AreEqual(citiesIndex[1], await _client.Get<CitiesIndex>(1));
             Assert.AreEqual(citiesIndex[_header.Records - 1], await _client.Get<CitiesIndex>(_header.Records - 1));
         }
+
+        [TestMethod]
+        public async Task GetCitiesIndex_CityName_Order_Test()
+        {
+            var data = File.ReadAllBytes("./DataBase/geobase.dat");
+            var citiesIndex = await _client.GetItems<CitiesIndex>(0, _header.Records);
+
+            CompareCitiesItems(data, citiesIndex);
+        }
+
+        private void CompareCitiesItems(byte[] data, System.Collections.Generic.List<CitiesIndex> citiesIndex)
+        {
+            var isNotSorter = false;
+            CitiesIndex preCityIndex;
+            CitiesIndex curCityIndex;
+            for (int i = 1; i < citiesIndex.Count - 1; i++)
+            {
+                preCityIndex = citiesIndex[i - 1];
+                curCityIndex = citiesIndex[i];
+                isNotSorter = CompareCityNamesByBytes(data, preCityIndex, curCityIndex, i);
+                if (isNotSorter)
+                {
+                    break;
+                }
+            }
+            Assert.IsTrue(isNotSorter, "Cities Index is sorted sorted");
+
+        }
+
+        private bool CompareCityNamesByBytes(byte[] data, CitiesIndex preCityIndex, CitiesIndex curCityIndex, int i)
+        {
+            var isNotSorter = false;
+            for (int j = 0; j < 20; j++)
+            {
+                if (data[preCityIndex.LocationInfoIndex + j] > data[curCityIndex.LocationInfoIndex + j])
+                {
+                    isNotSorter = true;
+                    TestContext.WriteLine($"Item Id index = {i - 1} CityName = {preCityIndex.Location.City} ");
+                    TestContext.WriteLine($"Item Id index = {i} CityName = {curCityIndex.Location.City} ");
+                    break;
+                }
+            }
+            return isNotSorter;
+        }
+
         [TestMethod]
         public async Task ScanCitiesIndex_Test()
         {

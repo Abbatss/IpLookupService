@@ -3,12 +3,11 @@ using System.Diagnostics;
 using IPLookup.API.InMemoryDataBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IPLookup.API.Host.Tests
+namespace IPLookup.API.InMemoryDataBase.Test
 {
     [TestClass]
     public class GeoDataBaseLoadPerformanceTests
     {
-        private TestContext testContextInstance;
 
         /// <summary>
         ///  Gets or sets the test context which provides
@@ -16,8 +15,8 @@ namespace IPLookup.API.Host.Tests
         ///</summary>
         public TestContext TestContext
         {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
+            get;
+            set;
         }
         [TestMethod]
         [DataRow(100)]
