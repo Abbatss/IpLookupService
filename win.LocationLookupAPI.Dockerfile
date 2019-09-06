@@ -11,7 +11,7 @@ RUN powershell -NoProfile -Command \
     Import-module IISAdministration; \
     New-IISSite -Name "ASPNET" -PhysicalPath C:\app -BindingInformation "*:8001:"
 
-# This instruction tells the container to listen on port 8000. 
+# This instruction tells the container to listen on port 8001. 
 EXPOSE 8001
 
 # The final instruction copies the site you published earlier into the container.
