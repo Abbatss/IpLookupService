@@ -18,7 +18,33 @@ To run unit test for SPA Web site :
 
 
 .net 4.7 solution file ./src/IPLookupService.sln
-solution can be run from MS Visual Stidio 2019 or from docker compose
+
+solution can be run from MS Visual Stidio 2019 or from docker
+
+to run win Dockers which include .net 4.7.2 and iis :
+0. switch docker to work with windows containers.
+1. Publish src\SPAWeb\GeoInformationSPA project from VS Studio using Docker profile
+2. Publish src\API\IPLookup.API.Host project from VS Studio using Docker profile
+3. run build\build-win.LocationLookupSite.Dockerfile.cmd
+4. run build\build-win.LocationLookupAPI.Dockerfile.cmd
+
+Also you can download allready built images from my repo.
+to do that:
+open CMD. write:
+1. docker run -d -p 44372:44372 maskevich/win-locationlookup-spa
+1. docker run -d -p 44375:44365 maskevich/win-locationlookup-api
+
 
 .net core 2.1 solution file ./src/Core_IPLookupService.sln
+
+solution can be run from MS Visual Stidio 2019 or from docker
+
+0. switch docker to work with linux containers.
+1. run build\build-lin.LocationLookupSite.Dockerfile.cmd
+2. run build\build-lin.LocationLookupAPI.Dockerfile.cmd
+
+open API site swagger : http://localhost:44365
+
+open SPA : http://localhost:44372
+
 
