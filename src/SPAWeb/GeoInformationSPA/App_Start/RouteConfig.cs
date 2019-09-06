@@ -13,11 +13,16 @@ namespace GeoInformationSPA
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("config.json");
+
+
             routes.MapRoute(
                name: "AngularRoute",
                url: "{*clientRoute}",
                defaults: new { controller = "Home", action = "Index" }
            );
+
+           
 
             routes.MapRoute(
                 name: "Default",

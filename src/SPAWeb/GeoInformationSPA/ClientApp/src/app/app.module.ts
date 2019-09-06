@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, RouteReuseStrategy } from '@angular/router';
@@ -16,7 +16,14 @@ import {
   LocationsAbstractService,
   LocationsService
 } from './services/locations.service';
-export var options: Partial<IConfig> | (() => Partial<IConfig>);
+import { AppConfig } from './app.config';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
+export function initializeApp(appConfig: AppConfig) {
+  return () => appConfig.load();
+}
+
 
 @NgModule({
   declarations: [
@@ -38,7 +45,11 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
       { path: 'citysearch', component: CitySearchComponent }
     ])
   ],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' },
+  providers: [
+    AppConfig,
+    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppConfig], multi: true },
+
+    {provide: APP_BASE_HREF, useValue : '/' },
   {provide: RouteReuseStrategy, useClass: CacheRouteReuseStrategy},
   { provide: LocationsAbstractService, useClass: LocationsService },
 ],

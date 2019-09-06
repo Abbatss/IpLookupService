@@ -16,3 +16,9 @@ To run unit test for SPA Web site :
 
 ./src/SPAWeb/GeoInformationSPA/ClientApp > ng test
 
+
+.net 4.7 solution file ./src/IPLookupService.sln
+solution can be run from MS Visual Stidio 2019 or from docker compose
+
+.net core 2.1 solution file ./src/Core_IPLookupService.sln
+

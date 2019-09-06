@@ -1,0 +1,22 @@
+version: '3'
+services:
+ 
+  ipl_api:
+    image: test/ipl_api:latest
+    build:
+      context: .
+      dockerfile: LocationLookupAPI.Dockerfile
+    environment:
+      
+    ports:
+      - "1100:80"
+
+  ipl_spa:
+    image: test/win_ipl_spa:latest
+    build:
+      context: .
+      dockerfile: win.LocationLookupSite.Dockerfile
+    environment:
+    ports:
+      - "1101:80"
+

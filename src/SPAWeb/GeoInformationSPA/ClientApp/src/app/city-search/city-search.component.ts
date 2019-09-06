@@ -6,7 +6,7 @@ import { LocationsAbstractService } from '../services/locations.service';
 @Component({
   selector: 'app-city-search',
   templateUrl: './city-search.component.html',
-  styleUrls: ['city-search.component.css'],
+  styleUrls: ['./city-search.component.css'],
   encapsulation: ViewEncapsulation.None,
 
 })

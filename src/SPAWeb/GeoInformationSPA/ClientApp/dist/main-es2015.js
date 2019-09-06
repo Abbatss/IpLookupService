@@ -420,7 +420,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var options;
+const options = null;
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -464,7 +464,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".demo-viewport {\r\n  height: 500px;\r\n  width:inherit;\r\n  border: 1px solid black;\r\n\r\n  .cdk-virtual-scroll-content-wrapper {\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n}\r\n\r\n.demo-horizontal {\r\n  .cdk-virtual-scroll-content-wrapper {\r\n    flex-direction: row;\r\n  }\r\n\r\n  .demo-item {\r\n    -ms-writing-mode: tb-lr;\r\n    -webkit-writing-mode: vertical-lr;\r\n    /* stylelint-disable-next-line material/no-prefixes */\r\n    writing-mode: vertical-lr;\r\n    width:300px;\r\n  }\r\n}\r\n\r\n.demo-state-item {\r\n  height: 60px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n}\r\n\r\n.demo-state {\r\n  font-size: 20px;\r\n  font-weight: 500;\r\n}\r\n\r\n.demo-capital {\r\n  font-size: 14px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2l0eS1zZWFyY2gvY2l0eS1zZWFyY2guY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYixhQUFhO0VBQ2IsdUJBQXVCOztFQUV2QjtJQUNFLGFBQWE7SUFDYixzQkFBc0I7RUFDeEI7QUFDRjs7QUFFQTtFQUNFO0lBQ0UsbUJBQW1CO0VBQ3JCOztFQUVBO0lBQ0UsdUJBQXVCO0lBQ3ZCLGlDQUFpQztJQUNqQyxxREFBcUQ7SUFDckQseUJBQXlCO0lBQ3pCLFdBQVc7RUFDYjtBQUNGOztBQUVBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsdUJBQXVCO0FBQ3pCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGVBQWU7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9jaXR5LXNlYXJjaC9jaXR5LXNlYXJjaC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRlbW8tdmlld3BvcnQge1xyXG4gIGhlaWdodDogNTAwcHg7XHJcbiAgd2lkdGg6aW5oZXJpdDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuXHJcbiAgLmNkay12aXJ0dWFsLXNjcm9sbC1jb250ZW50LXdyYXBwZXIge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgfVxyXG59XHJcblxyXG4uZGVtby1ob3Jpem9udGFsIHtcclxuICAuY2RrLXZpcnR1YWwtc2Nyb2xsLWNvbnRlbnQtd3JhcHBlciB7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIH1cclxuXHJcbiAgLmRlbW8taXRlbSB7XHJcbiAgICAtbXMtd3JpdGluZy1tb2RlOiB0Yi1scjtcclxuICAgIC13ZWJraXQtd3JpdGluZy1tb2RlOiB2ZXJ0aWNhbC1scjtcclxuICAgIC8qIHN0eWxlbGludC1kaXNhYmxlLW5leHQtbGluZSBtYXRlcmlhbC9uby1wcmVmaXhlcyAqL1xyXG4gICAgd3JpdGluZy1tb2RlOiB2ZXJ0aWNhbC1scjtcclxuICAgIHdpZHRoOjMwMHB4O1xyXG4gIH1cclxufVxyXG5cclxuLmRlbW8tc3RhdGUtaXRlbSB7XHJcbiAgaGVpZ2h0OiA2MHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLmRlbW8tc3RhdGUge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG59XHJcblxyXG4uZGVtby1jYXBpdGFsIHtcclxuICBmb250LXNpemU6IDE0cHg7XHJcbn1cclxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".demo-viewport {\r\n  height: 500px;\r\n  width:inherit;\r\n  border: 1px solid black;\r\n}\r\n.demo-state-item {\r\n  height: 60px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n}\r\n.demo-state {\r\n  font-size: 20px;\r\n  font-weight: 500;\r\n}\r\n.demo-capital {\r\n  font-size: 14px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2l0eS1zZWFyY2gvY2l0eS1zZWFyY2guY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYixhQUFhO0VBQ2IsdUJBQXVCO0FBQ3pCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHNCQUFzQjtFQUN0Qix1QkFBdUI7QUFDekI7QUFFQTtFQUNFLGVBQWU7RUFDZixnQkFBZ0I7QUFDbEI7QUFFQTtFQUNFLGVBQWU7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9jaXR5LXNlYXJjaC9jaXR5LXNlYXJjaC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRlbW8tdmlld3BvcnQge1xyXG4gIGhlaWdodDogNTAwcHg7XHJcbiAgd2lkdGg6aW5oZXJpdDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxufVxyXG4uZGVtby1zdGF0ZS1pdGVtIHtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uZGVtby1zdGF0ZSB7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuXHJcbi5kZW1vLWNhcGl0YWwge1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxufVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -560,7 +560,7 @@ IpSearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         selector: 'app-ip-search',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./ip-search.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/ip-search/ip-search.component.html")).default,
         encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! .//ip-search.component.css */ "./src/app/ip-search/ip-search.component.css")).default]
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./ip-search.component.css */ "./src/app/ip-search/ip-search.component.css")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_locations_service__WEBPACK_IMPORTED_MODULE_2__["LocationsAbstractService"]])
 ], IpSearchComponent);

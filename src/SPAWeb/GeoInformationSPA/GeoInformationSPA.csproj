@@ -130,6 +130,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\dist\glyphicons-halflings-regular.svg" />
+    <Content Include="ClientApp\dist\index.html" />
+    <Content Include="ClientApp\dist\main-es2015.js" />
+    <Content Include="ClientApp\dist\main-es5.js" />
+    <Content Include="ClientApp\dist\polyfills-es2015.js" />
+    <Content Include="ClientApp\dist\polyfills-es5.js" />
+    <Content Include="ClientApp\dist\runtime-es2015.js" />
+    <Content Include="ClientApp\dist\runtime-es5.js" />
+    <Content Include="ClientApp\dist\styles-es2015.js" />
+    <Content Include="ClientApp\dist\styles-es5.js" />
+    <Content Include="ClientApp\dist\vendor-es2015.js" />
+    <Content Include="ClientApp\dist\vendor-es5.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -140,10 +152,27 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClientApp\dist\assets\config.json" />
+    <Content Include="ClientApp\dist\glyphicons-halflings-regular.eot" />
+    <Content Include="ClientApp\dist\glyphicons-halflings-regular.ttf" />
+    <Content Include="ClientApp\dist\glyphicons-halflings-regular.woff" />
+    <Content Include="ClientApp\dist\glyphicons-halflings-regular.woff2" />
+    <Content Include="ClientApp\dist\main-es2015.js.map" />
+    <Content Include="ClientApp\dist\main-es5.js.map" />
+    <Content Include="ClientApp\dist\polyfills-es2015.js.map" />
+    <Content Include="ClientApp\dist\polyfills-es5.js.map" />
+    <Content Include="ClientApp\dist\runtime-es2015.js.map" />
+    <Content Include="ClientApp\dist\runtime-es5.js.map" />
+    <Content Include="ClientApp\dist\styles-es2015.js.map" />
+    <Content Include="ClientApp\dist\styles-es5.js.map" />
+    <Content Include="ClientApp\dist\vendor-es2015.js.map" />
+    <Content Include="ClientApp\dist\vendor-es5.js.map" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\Docker.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
