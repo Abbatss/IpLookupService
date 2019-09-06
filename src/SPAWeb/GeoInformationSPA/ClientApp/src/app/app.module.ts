@@ -44,7 +44,8 @@ export function initializeApp(appConfig: AppConfig) {
       { path: '', component: IpSearchComponent, pathMatch: 'full' },
 
       { path: 'ipsearch', component: IpSearchComponent },
-      { path: 'citysearch', component: CitySearchComponent }
+      { path: 'citysearch', component: CitySearchComponent },
+      { path: 'settings', component: AppSettingsComponent }
     ])
   ],
   providers: [

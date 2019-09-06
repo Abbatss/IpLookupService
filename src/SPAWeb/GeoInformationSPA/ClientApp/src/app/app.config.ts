@@ -18,8 +18,15 @@ export class AppConfig {
         AppConfig.settings = response as IAppConfig;
         resolve();
       }).catch((response: any) => {
-        reject(`Could not load file '${jsonFile}': ${JSON.stringify(response)}`);
+        resolve();
+        AppConfig.settings =  new AppConfigSettngs();
       });
     });
   }
 }
+export class AppConfigSettngs implements IAppConfig
+{
+  apiUrl: string;
+  
+}
+

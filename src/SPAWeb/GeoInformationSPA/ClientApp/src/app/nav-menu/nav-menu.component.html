@@ -23,6 +23,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Search By City
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/settings"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Settings
+              </a>
+            </li>
           </ul>
         </div>
     </div>

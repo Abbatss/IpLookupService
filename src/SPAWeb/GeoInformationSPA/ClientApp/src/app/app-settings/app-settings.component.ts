@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from '../app.config';
 
 @Component({
   selector: 'app-app-settings',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppSettingsComponent implements OnInit {
 
+ public  baseUrl:string;
   constructor() { }
 
   ngOnInit() {
+  }
+  public setUrl()
+  {
+    AppConfig.settings.apiUrl = this.baseUrl;
   }
 
 }
