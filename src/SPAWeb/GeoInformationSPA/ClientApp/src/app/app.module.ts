@@ -17,6 +17,7 @@ import {
   LocationsService
 } from './services/locations.service';
 import { AppConfig } from './app.config';
+import { AppSettingsComponent } from './app-settings/app-settings.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -31,7 +32,8 @@ export function initializeApp(appConfig: AppConfig) {
     NavMenuComponent,
     IpSearchComponent,
     CitySearchComponent,
-    LocationDetailsComponent
+    LocationDetailsComponent,
+    AppSettingsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
