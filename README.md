@@ -17,6 +17,13 @@ To run unit test for SPA Web site :
 ./src/SPAWeb/GeoInformationSPA/ClientApp > ng test
 
 
+Test for DB load in memory - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseLoadPerformanceTests
+
+It looks like Indedex with link to location ordered by City - is not orderedby City.
+Test - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseClientTests.GetCitiesIndex_CityName_Order_Test
+
+
+
 .net 4.7 solution file ./src/IPLookupService.sln
 
 solution can be run from MS Visual Stidio 2019 or from docker
@@ -66,3 +73,17 @@ remove containers :
 Docker rm lin-locationlookup-spa -f
 
 Docker rm lin-locationlookup-api -f
+
+Services also can be deployed to AWS 
+0) aws account should have permissions to create S3 buckets and Lambdas.
+1) S3 bucket + CloudFrom from SPA (put ./src/SPAWeb/GeoInformationSPA/ClientAppClientApp/dist folder to S3 bucket. Configure S3 bucket to handler static sites)
+2) Deploy API to lambda:
+	a) Publish IPLookup.API.Host.Lambda.csproj project using Lambda profile.
+	b) Zip published folder
+	c) Put archieve to s3 bucket
+	d) update terraform.ts with bucket name and key name from c) . Set s3 bucket to store terraform state. 
+	e) Run terraform script ./deploy/aws/api/terraform.ts
+
+AWS cloud serverless solution bes fits for usage spec: 10 000 000 users per day and 100 000 000 .
+Cost ~25$ per day  for geo redundunt, autoscale, multi region solution with fast access throw the world.
+I wanted to put inmemory db to DynamoDB and use DAX + DynamoDB to have quick and chip storage but I have no time to do that righ now.
