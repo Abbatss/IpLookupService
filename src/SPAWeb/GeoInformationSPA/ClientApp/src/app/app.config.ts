@@ -19,7 +19,9 @@ export class AppConfig {
         resolve();
       }).catch((response: any) => {
         resolve();
-        AppConfig.settings =  new AppConfigSettngs();
+        var appConfig = new AppConfigSettngs();
+        appConfig.apiBaseUrl="http://localhost:44365/api"
+        AppConfig.settings =  appConfig;
       });
     });
   }

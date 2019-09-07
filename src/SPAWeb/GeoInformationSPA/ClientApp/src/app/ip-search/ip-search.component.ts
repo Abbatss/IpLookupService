@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocationModel } from '../Models/LocationModel';
+import { LocationModel } from '../models/LocationModel';
 import { ViewEncapsulation } from '@angular/core';
 import { LocationsAbstractService } from '../services/locations.service';
 @Component({

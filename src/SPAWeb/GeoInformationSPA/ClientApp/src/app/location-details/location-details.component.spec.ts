@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, Validators, FormControl } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { LocationDetailsComponent } from './location-details.component';
-import { LocationModel } from '../Models/LocationModel';
-import { NgModule } from '@angular/core';
+import { LocationModel } from '../models/LocationModel';
 describe('LocationDetailsComponent', () => {
   let component: LocationDetailsComponent;
   let fixture: ComponentFixture<LocationDetailsComponent>;

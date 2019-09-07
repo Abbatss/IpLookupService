@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace Core.IPLookup.API.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             ConfigureSwagger(services);
             ConfigureDB(services);
         }
@@ -40,7 +43,7 @@ namespace Core.IPLookup.API.Host
             var client = new GeoDataBaseClient(path);
             client.Init();
             services.AddSingleton<IInMemoryGeoDataBase>(client);
-            services.AddSingleton<IGeoDataBaseQuery,GeoDataBaseQuery>();
+            services.AddSingleton<IGeoDataBaseQuery, GeoDataBaseQuery>();
         }
 
         public void ConfigureSwagger(IServiceCollection services)

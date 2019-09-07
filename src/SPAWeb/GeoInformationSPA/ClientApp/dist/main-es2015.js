@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>this tab is temporary and necessary until CI/CD process fully configured.</p>\n\n<span>API Base url:\n    <input  type='text' [(ngModel)]=\"baseUrl\" />\n    <button (click)=\"setUrl()\">Save</button>\n\n    </span>");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>this tab is temporary and necessary until CI/CD process fully configured.</p>\r\n\r\n<span>API Base url:\r\n    <input  type='text' [(ngModel)]=\"baseUrl\" />\r\n    <button (click)=\"setUrl()\">Save</button>\r\n\r\n    </span>");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n<span> Country : {{geoInfo.Country}} </span>\r\n<br/>\r\n<span > Region : {{geoInfo.Region}} </span>\r\n<br/>\r\n<span > Postal : {{geoInfo.Postal}} </span>\r\n<br/>\r\n<span > City : {{geoInfo.City}} </span>\r\n<br/>\r\n<span > Organization : {{geoInfo.Organization}} </span>\r\n<br/>\r\n<span > Latitude : {{geoInfo.Latitude}} </span>\r\n<br/>\r\n<span > Longitude : {{geoInfo.Longitude}} </span>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\n<span> Country : {{geoInfo.Country}} </span>\n<br/>\n<span > Region : {{geoInfo.Region}} </span>\n<br/>\n<span > Postal : {{geoInfo.Postal}} </span>\n<br/>\n<span > City : {{geoInfo.City}} </span>\n<br/>\n<span > Organization : {{geoInfo.Organization}} </span>\n<br/>\n<span > Latitude : {{geoInfo.Latitude}} </span>\n<br/>\n<span > Longitude : {{geoInfo.Longitude}} </span>\n</div>");
 
 /***/ }),
 
@@ -330,24 +330,6 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
-/***/ "./src/app/Models/LocationModel.ts":
-/*!*****************************************!*\
-  !*** ./src/app/Models/LocationModel.ts ***!
-  \*****************************************/
-/*! exports provided: LocationModel */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationModel", function() { return LocationModel; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-class LocationModel {
-}
-
-
-/***/ }),
-
 /***/ "./src/app/app-settings/app-settings.component.css":
 /*!*********************************************************!*\
   !*** ./src/app/app-settings/app-settings.component.css ***!
@@ -473,7 +455,9 @@ let AppConfig = AppConfig_1 = class AppConfig {
                 resolve();
             }).catch((response) => {
                 resolve();
-                AppConfig_1.settings = new AppConfigSettngs();
+                var appConfig = new AppConfigSettngs();
+                appConfig.apiBaseUrl = "http://localhost:44365/api";
+                AppConfig_1.settings = appConfig;
             });
         });
     }
@@ -722,7 +706,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationDetailsComponent", function() { return LocationDetailsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _Models_LocationModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Models/LocationModel */ "./src/app/Models/LocationModel.ts");
+/* harmony import */ var _models_LocationModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/LocationModel */ "./src/app/models/LocationModel.ts");
 
 
 
@@ -733,7 +717,7 @@ let LocationDetailsComponent = class LocationDetailsComponent {
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _Models_LocationModel__WEBPACK_IMPORTED_MODULE_2__["LocationModel"])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _models_LocationModel__WEBPACK_IMPORTED_MODULE_2__["LocationModel"])
 ], LocationDetailsComponent.prototype, "geoInfo", void 0);
 LocationDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -744,6 +728,24 @@ LocationDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], LocationDetailsComponent);
 
+
+
+/***/ }),
+
+/***/ "./src/app/models/LocationModel.ts":
+/*!*****************************************!*\
+  !*** ./src/app/models/LocationModel.ts ***!
+  \*****************************************/
+/*! exports provided: LocationModel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationModel", function() { return LocationModel; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class LocationModel {
+}
 
 
 /***/ }),
@@ -963,7 +965,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Work\csharp\LocationSearch\src\SPAWeb\GeoInformationSPA\ClientApp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\MyProjects\LocationService\src\SPAWeb\GeoInformationSPA\ClientApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })

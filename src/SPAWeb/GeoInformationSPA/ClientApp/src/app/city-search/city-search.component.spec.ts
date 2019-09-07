@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CitySearchComponent } from './city-search.component';
 import { LocationDetailsComponentMock } from './../location-details/location-details.component.mock';
-import { LocationModel } from '../Models/LocationModel';
 import {NgxMaskModule, IConfig} from 'ngx-mask'
 import { FormsModule, Validators, FormControl } from '@angular/forms';
 import { LocationsAbstractService } from '../services/locations.service';

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { LocationModel } from '../Models/LocationModel';
+import { LocationModel } from '../models/LocationModel';
 
 @Component({
   selector: 'app-location-details',

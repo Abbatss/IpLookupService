@@ -54,11 +54,15 @@ solution can be run from MS Visual Stidio 2019 or from docker
 Also you can download allready built images from my repo.
 to do that:
 open CMD. write:
-1. docker run -d -p 44372:44372 maskevich/lin-locationlookup-spa
-1. docker run -d -p 44375:44365 maskevich/lin-locationlookup-api
+1. docker run -d -p 44372:80 maskevich/lin-locationlookup-spa
+1. docker run -d -p 44365:80 maskevich/lin-locationlookup-api
 
 open API swagger : http://localhost:44365
 
 open SPA site: http://localhost:44372
 
 
+remove containers :
+Docker rm lin-locationlookup-spa -f
+
+Docker rm lin-locationlookup-api -f

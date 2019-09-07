@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IpSearchComponent } from './ip-search.component';
 import { LocationDetailsComponentMock } from '../location-details/location-details.component.mock';
-import { LocationModel } from '../Models/LocationModel';
 import { FormsModule,  } from '@angular/forms';
 import { LocationsAbstractService } from '../services/locations.service';
 import { LocationsServiceMock } from '../services/locations.service.mock';
