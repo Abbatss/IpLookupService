@@ -31,9 +31,17 @@ to run win Dockers which include .net 4.7.2 and iis :
 Also you can download allready built images from my repo.
 to do that:
 open CMD. write:
-1. docker run -d -p 44372:44372 maskevich/win-locationlookup-spa
-1. docker run -d -p 44375:44365 maskevich/win-locationlookup-api
+1. docker run --name win-locationlookup-spa -d -p 44372:44372 maskevich/win-locationlookup-spa
+2. docker run --name win-locationlookup-api -d -p 44375:44365 maskevich/win-locationlookup-api
 
+Open site:
+
+Windows docker host has bug: localhost address is not workin:
+you need to:
+1. docker inspect --format "{{ .NetworkSettings.IPAddress }}" win-locationlookup-spa
+2. docker inspect --format "{{ .NetworkSettings.IPAddress }}" win-locationlookup-api
+3. open spa by http://{IpFrom 1}
+4. specify API base url on settings taab: http://{IpFrom 2}/api
 
 .net core 2.1 solution file ./src/Core_IPLookupService.sln
 
@@ -43,8 +51,14 @@ solution can be run from MS Visual Stidio 2019 or from docker
 1. run build\build-lin.LocationLookupSite.Dockerfile.cmd
 2. run build\build-lin.LocationLookupAPI.Dockerfile.cmd
 
-open API site swagger : http://localhost:44365
+Also you can download allready built images from my repo.
+to do that:
+open CMD. write:
+1. docker run -d -p 44372:44372 maskevich/lin-locationlookup-spa
+1. docker run -d -p 44375:44365 maskevich/lin-locationlookup-api
 
-open SPA : http://localhost:44372
+open API swagger : http://localhost:44365
+
+open SPA site: http://localhost:44372
 
 
