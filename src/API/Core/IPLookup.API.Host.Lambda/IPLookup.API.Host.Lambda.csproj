@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="aws-lambda-tools-defaults.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="aws-lambda-tools-defaults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+  <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="3.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IPLookup.API.Host\IPLookup.API.Host.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="serverless.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

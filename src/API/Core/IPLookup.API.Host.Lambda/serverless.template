@@ -1,0 +1,56 @@
+{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+	"Transform" : "AWS::Serverless-2016-10-31",
+	"Description" : "Document generation Serverless Application",
+	"Parameters" : {
+		"Test" : {
+			"Type" : "String",        
+			"AllowedValues" : ["true", "false"],
+			"Description" : "Test Parameter"
+		}
+	},
+	"Resources" : {
+
+			"AspNetCoreFunction" : {
+				"Type" : "AWS::Serverless::Function",
+				"Properties": {
+				"Handler": "DocumentGeneration.Api.Host.Lambda::DocumentGeneration.Api.Host.Lambda.LambdaEntryPoint::FunctionHandlerAsync",
+				"Runtime": "dotnetcore2.1",
+				"CodeUri": "bin/Debug/netcoreapp2.1/publish",
+				"MemorySize": 256,
+				"Timeout": 30,
+				"Role": null,
+				"Policies": [ "AWSLambdaFullAccess" ],
+				"Environment" : {
+					"Variables" : {
+						
+					}
+				},
+				"Events": {
+					"ProxyResource": {
+						"Type": "Api",
+						"Properties": {
+							"Path": "/{proxy+}",
+							"Method": "ANY"
+						}
+					},
+
+					"RootResource": {
+						"Type": "Api",
+						"Properties": {
+							"Path": "/",
+							"Method": "ANY"
+						}
+					}
+				}
+			}
+		}
+	},
+
+	"Outputs" : {
+		"ApiURL" : {
+			"Description" : "API endpoint URL for Prod environment",
+			"Value" : { "Fn::Sub" : "https://1.execute-api.eu-west-2.amazonaws.com/Prod/" }
+		}
+	}
+}
