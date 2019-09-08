@@ -2,7 +2,9 @@
 
 Service uses in memory DB. It can be found here : ./src/Common/DataBase/geobase.dat
 
-working solution in AWS: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
+# working solution in AWS: 
+1. SPA: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
+2. API: https://kbd0qhpqaa.execute-api.us-east-1.amazonaws.com/develop/
 
 # To run Acceptance tests :
 
