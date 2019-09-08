@@ -2,6 +2,8 @@
 
 Service uses in memory DB. It can be found here : ./src/Common/DataBase/geobase.dat
 
+working solution in AWS: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
+
 # To run Acceptance tests :
 
 install python 3.7 
