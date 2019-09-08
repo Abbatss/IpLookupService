@@ -5,7 +5,7 @@ variable "AWS_SECRET_KEY" {
 }
 
 variable "AWS_REGION" {
-  default = "eu-west-2"
+  default = "us-east-1"
 }
 
 variable "BUILD_BUILDNUMBER" {
@@ -15,7 +15,7 @@ variable "ENVIRONMENT" {
   default = "develop"
 }
 
-variable "API_RUNTIME" {
+variable "RUNTIME" {
   default = "dotnetcore2.1"
 }
 

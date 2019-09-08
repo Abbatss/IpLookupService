@@ -8,7 +8,7 @@ terraform {
   backend "s3" {
     bucket = "tz-ipsearch-terraform-backend"
     key    = "tz.ipsearch.tfstate"
-    region = "eu-west-2"
+    region = "us-east-1"
   }
 }
 
@@ -60,7 +60,7 @@ EOF
 
 data "aws_s3_bucket_object" "tz-ipsearch-api" {
 bucket = "tz-ipsearch-api"
-key    = "IPLookup.API.Host.Lambda-${var.BUILD_BUILDNUMBER}/IPLookup.API.Host.Lambda.zip"
+key    = "IPLookup.API.Host.Lambda.zip"
 }
 
 resource "aws_lambda_function" "tz-ipsearch-api" {
@@ -75,10 +75,6 @@ timeout                        = var.TIMEOUT
 handler                        = "IPLookup.API.Host.Lambda::IPLookup.API.Host.Lambda.LambdaEntryPoint::FunctionHandlerAsync"
 runtime                        = var.RUNTIME
 
-environment {
-variables = {
-  }
-}
 }
 
 resource "aws_api_gateway_resource" "proxy" {
