@@ -6,7 +6,7 @@ Service uses in memory DB. It can be found here : ./src/Common/DataBase/geobase.
 
 install python 3.7 
 
-open cmd on root folder
+open cmd on root folder  cd ./Tests/AcceptanceTests
 
 python -m pytest
 
@@ -34,7 +34,8 @@ Visual studio:
 4. setup multy startup projects for solution (IPLookup.API.Host, GeoInformationSPA)
 5. ⏵ start
 
-to run win Dockers which include .net 4.7.2 and iis :
+Docker:
+to run win Docker which includes .net 4.7.2 and iis :
 0. switch docker to work with windows containers.
 1. Publish src\SPAWeb\GeoInformationSPA project from VS Studio using Docker profile
 2. Publish src\API\IPLookup.API.Host project from VS Studio using Docker profile
@@ -60,6 +61,12 @@ you need to:
 
 solution can be run from MS Visual Stidio 2019 or from docker
 
+Visual studio:
+1. ⏵ start IPLookup.API.Host
+2. powershell -> cd /src/SPAWeb/GeoInformationSPA/ClientApp
+3. ng serve (Node.js 10+ should be installed to have ability to run Node test server)
+
+Docker:
 0. switch docker to work with linux containers.
 1. run build\build-lin.LocationLookupSite.Dockerfile.cmd
 2. run build\build-lin.LocationLookupAPI.Dockerfile.cmd
