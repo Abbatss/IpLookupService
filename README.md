@@ -27,6 +27,13 @@ Test - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseClientTests.GetCitiesIndex_
 
 solution can be run from MS Visual Stidio 2019 or from docker
 
+Visual studio:
+1.Open solution ./src/IPLookupService.sln.
+2. Rebuild GeoInformationSPA (make sure that rosly folder is present in ./bin . If not - clean and rebuild GeoInformationSPA)
+3. Rebuild IPLookup.API.Host
+4. setup multy startup projects for solution (IPLookup.API.Host, GeoInformationSPA)
+5. ⏵ start
+
 to run win Dockers which include .net 4.7.2 and iis :
 0. switch docker to work with windows containers.
 1. Publish src\SPAWeb\GeoInformationSPA project from VS Studio using Docker profile
