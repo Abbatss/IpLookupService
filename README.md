@@ -73,7 +73,7 @@ Docker rm lin-locationlookup-spa -f
 
 Docker rm lin-locationlookup-api -f
 
-#Services also can be deployed to AWS 
+# Services also can be deployed to AWS 
 0) aws account should have permissions to create S3 buckets and Lambdas.
 1) S3 bucket + CloudFrom from SPA (put ./src/SPAWeb/GeoInformationSPA/ClientAppClientApp/dist folder to S3 bucket. Configure S3 bucket to handler static sites)
 2) Deploy API to lambda:
