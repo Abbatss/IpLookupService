@@ -38,9 +38,9 @@ namespace Common
                 return false;
             }
             return byte.TryParse(ipBytes[0], out var firstByte)
-                || byte.TryParse(ipBytes[1], out var secondByte)
-                || byte.TryParse(ipBytes[2], out var thirdByte)
-                || byte.TryParse(ipBytes[3], out var fouthByte);
+                && byte.TryParse(ipBytes[1], out var secondByte)
+                && byte.TryParse(ipBytes[2], out var thirdByte)
+                && byte.TryParse(ipBytes[3], out var fouthByte);
         }
     }
 }
