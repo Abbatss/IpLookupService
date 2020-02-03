@@ -1,6 +1,32 @@
-# Service to finde Locations by IP or City
+# Service to finde coordinates by IP or locations by city
 
 Service uses in memory DB. It can be found here : ./src/Common/DataBase/geobase.dat
+
+# DB Description
+
+DB has binary format. The file is sequentially stored:
+# 60 byte - Header
+	int   version;           // DB version
+	sbyte name[32];          // DB name
+	ulong timestamp;         // DB creation time
+	int   records;           // Overall records count
+	uint  offset_ranges;     // offset from the beginning of the file to the beginning of the list of records with geoinformation
+	uint  offset_cities;     // offset from the beginning of the file to the beginning of the index, sorted by city name
+	uint  offset_locations;  // offset from the beginning of the file to the beginning of the list of location records
+# 12 byte * Header.records (records count) - List of rows with IP ranges, sorted by ip_from and ip_to
+	uint ip_from;           // beginning of the range of IP addresses
+	uint ip_to;             // end of IP range
+	uint location_index;     // location record index
+# 96 byte * Header.records (records count)  - list of records with location information with coordinates (longitude and latitude)
+	sbyte country[8];        // country name (random string with the prefix "cou_")
+	sbyte region[12];        // region name (random string with the prefix "reg_")
+	sbyte postal[12];        // zip code (random string with the prefix "pos_")
+	sbyte city[24];          // city name (random string with the prefix "cit_")
+	sbyte organization[32];  // organization name (random string with the prefix "org_")
+	float latitude;          // latitude
+	float longitude;         // longitude
+## 4 byte * Header.records (records count)  - list of location record indexes sorted by city name
+
 
 # working solution in AWS: 
 1. SPA: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
@@ -21,7 +47,7 @@ python -m pytest
 ./src/SPAWeb/GeoInformationSPA/ClientApp > ng test
 
 
-#Test for DB load in memory - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseLoadPerformanceTests
+# Test for DB load in memory - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseLoadPerformanceTests
 
 It looks like Indedex with link to location ordered by City - is not orderedby City.
 Test - IPLookup.API.InMemoryDataBase.Test.GeoDataBaseClientTests.GetCitiesIndex_CityName_Order_Test
