@@ -29,9 +29,13 @@ DB has binary format. The file is sequentially stored:
 
 
 # working solution in AWS: 
-1. SPA: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
-2. API: https://kbd0qhpqaa.execute-api.us-east-1.amazonaws.com/develop/
-
+	1. SPA: http://locations-lookup.s3-website-us-east-1.amazonaws.com/
+		a) IP :111.111.111.111
+		b) City: Ivocyze
+	2. API: https://ib7hey7l6d.execute-api.us-east-1.amazonaws.com/develop/
+		a) IP :111.111.111.111
+		b) City: Ivocyze
+	
 # To run Acceptance tests :
 
 install python 3.7 
