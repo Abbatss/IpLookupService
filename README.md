@@ -4,7 +4,7 @@ Service uses in memory DB. It can be found here : ./src/Common/DataBase/geobase.
 
 # DB Description
 
-DB has binary format. The file is sequentially stored:
+DB has binary format. The file sequentially stores:
 # 60 byte - Header
 	int   version;           // DB version
 	sbyte name[32];          // DB name
