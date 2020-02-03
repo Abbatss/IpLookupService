@@ -233,3 +233,4 @@ _Pvt_Extensions
 /deploy/aws/.terraform/plugins/windows_amd64/terraform-provider-aws_v2.27.0_x4.exe
 /deploy/aws/.terraform/terraform.tfstate
 /deploy/aws/terraform.exe
+.terraform

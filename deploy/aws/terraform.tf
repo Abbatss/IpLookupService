@@ -8,7 +8,7 @@ terraform {
   backend "s3" {
     bucket = "tz-ipsearch-terraform-backend"
     key    = "tz.ipsearch.tfstate"
-    region = "us-east-1"
+    region = "us-east-2"
   }
 }
 
